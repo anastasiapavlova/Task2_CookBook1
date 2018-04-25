@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfRecipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Recipe>
+    <Id>1</Id>
+    <Category>Cуп</Category>
+    <Name>Куриный бульон</Name>
+    <AuthorId>2</AuthorId>
+    <MarksId>
+      <int>1</int>
+      <int>4</int>
+      <int>5</int>
+    </MarksId>
+    <IngredientsId>
+      <int>1</int>
+      <int>3</int>
+      <int>2</int>
+    </IngredientsId>
+  </Recipe>
+  <Recipe>
+    <Id>2</Id>
+    <Category>Салат</Category>
+    <Name>Оливье</Name>
+    <AuthorId>2</AuthorId>
+    <MarksId>
+      <int>3</int>
+      <int>5</int>
+    </MarksId>
+    <IngredientsId>
+      <int>5</int>
+      <int>8</int>
+      <int>1</int>
+    </IngredientsId>
+  </Recipe>
+  <Recipe>
+    <Id>3</Id>
+    <Category>Горячее</Category>
+    <Name>Котлеты</Name>
+    <AuthorId>2</AuthorId>
+    <MarksId>
+      <int>4</int>
+      <int>5</int>
+      <int>4</int>
+    </MarksId>
+    <IngredientsId>
+      <int>6</int>
+      <int>4</int>
+      <int>1</int>
+    </IngredientsId>
+  </Recipe>
+</ArrayOfRecipe>
