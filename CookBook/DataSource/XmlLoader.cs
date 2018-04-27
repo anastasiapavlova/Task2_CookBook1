@@ -2,9 +2,9 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace XmlAccess
+namespace DataSource
 {
-    public class XmlLoad<T>
+    internal class XmlLoad<T>
     {
         public static Type type;
 
