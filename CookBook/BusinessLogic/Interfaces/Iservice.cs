@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BusinessLogic.Models;
+﻿using System.Collections.Generic;
 
 namespace BusinessLogic.Interfaces
 {
@@ -12,5 +7,6 @@ namespace BusinessLogic.Interfaces
         List<T> GetList();
         void AddItem(T item);
         void AddItems(List<T> items);
+        void DeleteItem(T item);
     }
 }

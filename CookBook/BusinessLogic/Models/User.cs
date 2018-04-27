@@ -7,6 +7,5 @@ namespace BusinessLogic.Models
         public int Id { get; set; }
         public string Login { get; set; }
         public AccountType Type { get; set; }
-        public string Password { get; set; }
     }
 }

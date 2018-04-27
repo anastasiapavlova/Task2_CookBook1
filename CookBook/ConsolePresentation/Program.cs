@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using BusinessLogic.Enums;
-using BusinessLogic.Models;
-using BusinessLogic.Services;
+using BusinessLogic.Logic;
 
 namespace ConsolePresentation
 {
@@ -10,31 +7,40 @@ namespace ConsolePresentation
     {
         static void Main(string[] args)
         {
-            //read recipes from xml
-            var recipeService = new MainService<Recipe>();
-            var recipesList = recipeService.GetList();
-            foreach (var r in recipesList)
+            //add list recipes
+            DataAdder.AddRecipes();
+
+            //add list ingredients
+            DataAdder.AddIngredients();
+
+            //add user list
+            DataAdder.AddUsers();
+
+            //add review list
+            DataAdder.AddReviews();
+
+            //read existing recipes
+            var recipes = DataReader.ReadRecipes();
+            foreach (var recipe in recipes)
             {
-                Console.WriteLine("Рецепт: " + r.Name + "\n Категория: "+ r.Category + "\n Пользователь: " + r.UserId);
+                Console.WriteLine("Рецепт: " + recipe.Name + "\n Категория: " + recipe.Category + "\n Пользователь: " + recipe.UserName);
             }
             Console.Read();
 
-            //add users to xml
-            List<User> users = new List<User>();
-            users.Add(new User { Id = 1, Login = "Nastya", Password = "111", Type = AccountType.Admin});
-            users.Add(new User { Id = 2, Login = "Meow1", Password = "222", Type = AccountType.User });
-            users.Add(new User { Id = 3, Login = "Meow2", Password = "333", Type = AccountType.User });
-            var userService = new MainService<User>();
-            userService.AddItems(users);
-
-            //check adding users
-            var usersList = userService.GetList();
-            foreach (var r in usersList)
+            //read existing users
+            var users = DataReader.ReadUsers();
+            foreach (var user in users)
             {
-                Console.WriteLine("User id: " + r.Id + "\n Login: " + r.Login + "\n Type: " + r.Type);
+                Console.WriteLine("Логин: " + user.Login + "\n Тип: " + user.Type + "\n Id: " + user.Id);
             }
             Console.Read();
-            
+
+            //delete recipe
+            DataDeleter.DeleteRecipes();
+
+            //delete ingredients
+            DataDeleter.DeleteIngredients();
+
         }
     }
 }

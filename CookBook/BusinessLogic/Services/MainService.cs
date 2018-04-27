@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using BusinessLogic.Interfaces;
-using BusinessLogic.Models;
 using DataAccess.Repositories;
 
 namespace BusinessLogic.Services
@@ -23,7 +22,19 @@ namespace BusinessLogic.Services
         public void AddItems(List<T> items)
         {
             var repository = new Repository<T>();
-            repository.AddList(items);
+            repository.AddRange(items);
+        }
+
+        public void DeleteItem(T item)
+        {
+            var repository = new Repository<T>();
+            repository.Delete(item);
+        }
+
+        public void UpdateItem(T item)
+        {
+            var repository = new Repository<T>();
+            repository.Update(item);
         }
     }
 }

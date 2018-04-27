@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfRecipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Recipe>
+<ArrayOfRecipeDataModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <RecipeDataModel>
     <Id>1</Id>
     <Category>Cуп</Category>
     <Name>Куриный бульон</Name>
-    <AuthorId>2</AuthorId>
-    <MarksId>
+    <UserId>1</UserId>
+    <ReviewsId>
       <int>1</int>
       <int>4</int>
       <int>5</int>
-    </MarksId>
-    <IngredientsId>
+    </ReviewsId>
+    <CompositionsId>
       <int>1</int>
       <int>3</int>
       <int>2</int>
-    </IngredientsId>
-  </Recipe>
-  <Recipe>
+    </CompositionsId>
+  </RecipeDataModel>
+  <RecipeDataModel>
     <Id>2</Id>
     <Category>Салат</Category>
     <Name>Оливье</Name>
-    <AuthorId>2</AuthorId>
-    <MarksId>
+    <UserId>3</UserId>
+    <ReviewsId>
       <int>3</int>
       <int>5</int>
-    </MarksId>
-    <IngredientsId>
+    </ReviewsId>
+    <CompositionsId>
       <int>5</int>
       <int>8</int>
       <int>1</int>
-    </IngredientsId>
-  </Recipe>
-  <Recipe>
+    </CompositionsId>
+  </RecipeDataModel>
+  <RecipeDataModel>
     <Id>3</Id>
     <Category>Горячее</Category>
     <Name>Котлеты</Name>
-    <AuthorId>2</AuthorId>
-    <MarksId>
+    <UserId>2</UserId>
+    <ReviewsId>
       <int>4</int>
       <int>5</int>
       <int>4</int>
-    </MarksId>
-    <IngredientsId>
+    </ReviewsId>
+    <CompositionsId>
       <int>6</int>
       <int>4</int>
       <int>1</int>
-    </IngredientsId>
-  </Recipe>
-</ArrayOfRecipe>
+    </CompositionsId>
+  </RecipeDataModel>
+</ArrayOfRecipeDataModel>

@@ -5,7 +5,7 @@ namespace DataAccess.Interfaces
     public interface IRepository<T>
     {
         List<T> GetList();
-        void AddList(List<T> items);
+        void AddRange(List<T> items);
         T Get(T item);
         void Update(T item);
         void Delete(T item);

@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,6 +45,11 @@
   <ItemGroup>
     <Compile Include="Enums\AccountType.cs" />
     <Compile Include="Interfaces\IService.cs" />
+    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Logic\DataAdder.cs" />
+    <Compile Include="Logic\DataDeleter.cs" />
+    <Compile Include="Logic\DataReader.cs" />
+    <Compile Include="Logic\DataUpdater.cs" />
     <Compile Include="Services\MainService.cs" />
     <Compile Include="Models\Composition.cs" />
     <Compile Include="Models\Ingredient.cs" />
@@ -55,6 +63,13 @@
       <Project>{C0B4AD89-27D3-4E8F-AA99-00C885590AF3}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataSource\DataSource.csproj">
+      <Project>{F4476DDA-6032-4050-8764-E0D0D9B7E2CD}</Project>
+      <Name>DataSource</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -25,10 +25,10 @@ namespace DataAccess.Repositories
             return dataContext.GetList<T>();
         }
 
-        public void AddList(List<T> items)
+        public void AddRange(List<T> items)
         {
             var dataContext = new DataContext();
-            dataContext.AddDataToXml(items);
+            dataContext.AddRange(items);
         }
 
         public T Get(T item)
