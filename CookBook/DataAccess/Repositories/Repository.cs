@@ -1,6 +1,5 @@
 ﻿using DataAccess.Interfaces;
 using DataSource;
-using System;
 using System.Collections.Generic;
 
 namespace DataAccess.Repositories
@@ -16,22 +15,32 @@ namespace DataAccess.Repositories
 
         public void Delete(T item)
         {
-            throw new NotImplementedException();
+            var dataContext = new DataContext();
+            dataContext.Delete<T>(item);
         }
 
         public List<T> GetList()
         {
-            throw new NotImplementedException();
+            var dataContext = new DataContext();
+            return dataContext.GetList<T>();
         }
 
-        public T List()
+        public void AddList(List<T> items)
         {
-            throw new NotImplementedException();
+            var dataContext = new DataContext();
+            dataContext.AddDataToXml(items);
+        }
+
+        public T Get(T item)
+        {
+            var dataContext = new DataContext();
+            return dataContext.Get(item);
         }
 
         public void Update(T item)
         {
-            throw new NotImplementedException();
+            var dataContext = new DataContext();
+            dataContext.Update(item);
         }
     }
 }

@@ -40,16 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logic\RatingCounter.cs" />
+    <Compile Include="Enums\AccountType.cs" />
+    <Compile Include="Interfaces\IService.cs" />
+    <Compile Include="Services\MainService.cs" />
+    <Compile Include="Models\Composition.cs" />
     <Compile Include="Models\Ingredient.cs" />
-    <Compile Include="Models\Mark.cs" />
     <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Models\Review.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{C0B4AD89-27D3-4E8F-AA99-00C885590AF3}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

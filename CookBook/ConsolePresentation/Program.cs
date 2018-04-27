@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using BusinessLogic.Enums;
 using BusinessLogic.Models;
-using XmlAccess;
+using BusinessLogic.Services;
 
 namespace ConsolePresentation
 {
@@ -9,22 +10,31 @@ namespace ConsolePresentation
     {
         static void Main(string[] args)
         {
-            //запись в xml
-            List<Recipe> recipes1 = new List<Recipe>(5);
-            recipes1.Add(new Recipe(1, "Cуп", "Куриный бульон", 2, new List<int>() { 1, 4, 5 }, new List<int>() { 1, 3, 2 }));
-            recipes1.Add(new Recipe(2, "Салат", "Оливье", 2, new List<int>() { 3, 5 }, new List<int>() { 5, 8, 1 }));
-            recipes1.Add(new Recipe(3, "Горячее", "Котлеты", 2, new List<int>() { 4, 5, 4 }, new List<int>() { 6, 4, 1 }));
-            XmlSave.SaveData(recipes1, "C:/Users/a2.pavlova/source/Task2_CookBook/CookBook/XmlAccess/xmlData.xml");
-
-            //
-            List<Recipe> recipes2 = new List<Recipe>();
-            XmlLoad<List<Recipe>> loadRecipes = new XmlLoad<List<Recipe>>();
-            recipes2 = loadRecipes.LoadData("C:/Users/a2.pavlova/source/Task2_CookBook/CookBook/XmlAccess/xmlData.xml");
-            foreach (var r in recipes2)
+            //read recipes from xml
+            var recipeService = new MainService<Recipe>();
+            var recipesList = recipeService.GetList();
+            foreach (var r in recipesList)
             {
-                Console.Write(r.Name);
+                Console.WriteLine("Рецепт: " + r.Name + "\n Категория: "+ r.Category + "\n Пользователь: " + r.UserId);
             }
             Console.Read();
+
+            //add users to xml
+            List<User> users = new List<User>();
+            users.Add(new User { Id = 1, Login = "Nastya", Password = "111", Type = AccountType.Admin});
+            users.Add(new User { Id = 2, Login = "Meow1", Password = "222", Type = AccountType.User });
+            users.Add(new User { Id = 3, Login = "Meow2", Password = "333", Type = AccountType.User });
+            var userService = new MainService<User>();
+            userService.AddItems(users);
+
+            //check adding users
+            var usersList = userService.GetList();
+            foreach (var r in usersList)
+            {
+                Console.WriteLine("User id: " + r.Id + "\n Login: " + r.Login + "\n Type: " + r.Type);
+            }
+            Console.Read();
+            
         }
     }
 }

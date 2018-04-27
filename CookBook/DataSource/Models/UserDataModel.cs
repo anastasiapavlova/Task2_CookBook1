@@ -1,8 +1,8 @@
-﻿using BusinessLogic.Enums;
+﻿using DataSource.Enums;
 
-namespace BusinessLogic.Models
+namespace DataSource.Models
 {
-    public class User
+    public class UserDataModel
     {
         public int Id { get; set; }
         public string Login { get; set; }
