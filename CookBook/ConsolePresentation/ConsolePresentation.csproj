@@ -53,10 +53,6 @@
       <Project>{ea1c2b03-2ef1-4ea7-b602-bb353d799901}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XmlAccess\XmlAccess.csproj">
-      <Project>{d4ea8068-cbd6-47cf-b603-9cf41a58069c}</Project>
-      <Name>XmlAccess</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

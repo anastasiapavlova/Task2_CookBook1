@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
 
-namespace XmlAccess
+namespace DataSource
 {
-    public class XmlSave
+    internal class XmlSaver
     {
         public static void SaveData(object IClass, string filename)
         {
