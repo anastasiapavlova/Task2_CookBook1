@@ -1,0 +1,41 @@
++ 1) назови проекты
+CookBook.BLL, CookBook.DAL, CookBook.Presentation, CookBook.Domain
+
+Domain 
++1) Models\Entities - тут все сущности без слова DataModel в конце класса (То что ты сделала в BLL :) )
+   просто Recipe, User etc
++   Models\Enums - назови AccountTypeS и пронумеруй все члены енамки
++2) когда перекрываешь Eqauls метод, надо перекрывать еще и GetHashCode - почитай об этом
++  UserDataModel m = obj as UserDataModel;
+   назвай перенменный не одной буквой
+   
++ 3) Review: ReviewDate переименуй в CreationDate
+   т.е. теоретически могут еще быть EditDate
+   
+4) давай сделаем Category enum - просто завтрак обеду ужин
+
+тут возможно я не так внимательно просмотрела твою диаграммув плане связей)
+
+5) у Review должен быть UserID and RecipeID
+   обзор знает кем и для какого рецепта он создан   
+   поэтому рецепту не нужна ReviewsId
+   
+   и чтобы доствать обзоры юзера надо доствать записи по UserID
+   аналогично для рецепта
+   
+6) Composition 
+   это запись должна знать сколько ингридиентов надо и для какого рецепта
+   RecipeID, IngredientId, Qnt   
+   поэтому рецепты не нужны  CompositionsId 
+   
+   ты достаешь нужные ингриды для рецепта по табл Compositions по RecipeID
+   
+7) вынести в константы путь к данным
+C:/Users/a2.pavlova/source/Task2_CookBook/CookBook/DataSource/Source/
+он по проекту раз 5 встречается
+и подумай как так сделать чтобы у меня тоже проект запускался)
+
+DAL
+дженерики это круто, то сейчас не тот случай
+добавить для каждой сущности ...Repository для работы с ней и соответующий ей интрефейс
+и свой текущий дженерик сделай базовым BaseRepository<...>,
