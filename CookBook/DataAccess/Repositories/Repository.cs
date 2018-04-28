@@ -37,10 +37,10 @@ namespace DataAccess.Repositories
             return dataContext.Get(item);
         }
 
-        public void Update(T item)
+        public void Update(T updateItem, T item)
         {
             var dataContext = new DataContext();
-            dataContext.Update(item);
+            dataContext.Update(updateItem, item);
         }
     }
 }

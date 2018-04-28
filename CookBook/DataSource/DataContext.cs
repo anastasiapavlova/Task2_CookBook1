@@ -40,16 +40,17 @@ namespace DataSource
             if (item == null) return;
             var data = GetList<T>();
             data.Remove(item);
+            XmlSaver.SaveData(data, "C:/Users/a2.pavlova/source/Task2_CookBook/CookBook/DataSource/Source/" + typeof(T).Name + ".xml");
         }
 
-        public void Update<T>(T item) where T : class
+        public void Update<T>(T updateItem, T item) where T : class
         {
             if (item == null) return;
             var data = GetList<T>();
-            var updateItem = data.Where(x => x.Equals(item)).FirstOrDefault();
             if (updateItem == null) return;
-
-            updateItem = item;
+            data.Remove(updateItem);
+            data.Add(item);
+            XmlSaver.SaveData(data, "C:/Users/a2.pavlova/source/Task2_CookBook/CookBook/DataSource/Source/" + typeof(T).Name + ".xml");
         }
     }
 }

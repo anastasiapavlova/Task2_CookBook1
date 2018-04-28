@@ -47,4 +47,19 @@
       <int>1</int>
     </CompositionsId>
   </RecipeDataModel>
+  <RecipeDataModel>
+    <Id>2</Id>
+    <Category>Салат</Category>
+    <Name>Летний</Name>
+    <UserId>3</UserId>
+    <ReviewsId>
+      <int>3</int>
+      <int>5</int>
+    </ReviewsId>
+    <CompositionsId>
+      <int>5</int>
+      <int>8</int>
+      <int>1</int>
+    </CompositionsId>
+  </RecipeDataModel>
 </ArrayOfRecipeDataModel>

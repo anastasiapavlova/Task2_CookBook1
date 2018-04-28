@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfIngredientDataModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <IngredientDataModel>
-    <Id>1</Id>
-    <Name>Помидор</Name>
-  </IngredientDataModel>
-  <IngredientDataModel>
     <Id>2</Id>
     <Name>Фарш</Name>
   </IngredientDataModel>
   <IngredientDataModel>
     <Id>3</Id>
-    <Name>Горошек</Name>
+    <Name>Морковка</Name>
   </IngredientDataModel>
 </ArrayOfIngredientDataModel>

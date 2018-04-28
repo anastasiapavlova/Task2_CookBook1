@@ -31,10 +31,10 @@ namespace BusinessLogic.Services
             repository.Delete(item);
         }
 
-        public void UpdateItem(T item)
+        public void UpdateItem(T updateItem, T item)
         {
             var repository = new Repository<T>();
-            repository.Update(item);
+            repository.Update(updateItem, item);
         }
     }
 }
