@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfReview xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Review>
+    <Id>1</Id>
+    <UserId>3</UserId>
+    <RecipeId>1</RecipeId>
+    <Description>Like it.</Description>
+    <CreationDate>2018-05-01T18:53:16.665588+03:00</CreationDate>
+  </Review>
+  <Review>
+    <Id>2</Id>
+    <UserId>1</UserId>
+    <RecipeId>2</RecipeId>
+    <Description>Perfect.</Description>
+    <CreationDate>2018-05-01T18:53:17.2049781+03:00</CreationDate>
+  </Review>
+  <Review>
+    <Id>3</Id>
+    <UserId>2</UserId>
+    <RecipeId>3</RecipeId>
+    <Description>Not bad.</Description>
+    <CreationDate>2018-05-01T18:53:17.4825845+03:00</CreationDate>
+  </Review>
+</ArrayOfReview>

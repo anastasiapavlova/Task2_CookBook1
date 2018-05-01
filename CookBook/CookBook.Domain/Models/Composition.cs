@@ -3,6 +3,7 @@
     public class Composition
     {
         public int Id { get; set; }
+        public int RecipeId { get; set; }
         public int IngredientId { get; set; }
         public int Quantity { get; set; }
 
@@ -14,7 +15,7 @@
             if (composition as Composition == null)
                 return false;
 
-            return composition.Id == this.Id && composition.IngredientId == this.IngredientId && composition.Quantity == this.Quantity;
+            return composition.Id == this.Id && composition.RecipeId == this.RecipeId && composition.IngredientId == this.IngredientId && composition.Quantity == this.Quantity;
         }
 
         public override int GetHashCode()

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfComposition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Composition>
+    <Id>1</Id>
+    <RecipeId>1</RecipeId>
+    <IngredientId>3</IngredientId>
+    <Quantity>2</Quantity>
+  </Composition>
+  <Composition>
+    <Id>2</Id>
+    <RecipeId>2</RecipeId>
+    <IngredientId>2</IngredientId>
+    <Quantity>3</Quantity>
+  </Composition>
+  <Composition>
+    <Id>3</Id>
+    <RecipeId>3</RecipeId>
+    <IngredientId>1</IngredientId>
+    <Quantity>4</Quantity>
+  </Composition>
+</ArrayOfComposition>

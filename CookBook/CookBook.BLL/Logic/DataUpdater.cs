@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using CookBook.BLL.Logging;
 using CookBook.BLL.Services;
+using CookBook.Domain.Enums;
 using CookBook.Domain.Models;
 
 namespace CookBook.BLL.Logic
@@ -11,7 +11,7 @@ namespace CookBook.BLL.Logic
     {
         public static void UpdateRecipe()
         {
-            var recipe = new Recipe { Id = 2, Category = "Салат", Name = "Летний", UserId = 3, ReviewsId = new List<int>() { 3, 5 }, CompositionsId = new List<int>() { 5, 8, 1 } };
+            var recipe = new Recipe { Id = 2, Category = CategoryTypes.Dinner, Name = "Летний", UserId = 3};
 
             var recipesService = new MainService<Recipe>();
             var recipesList = recipesService.GetList();
@@ -39,7 +39,7 @@ namespace CookBook.BLL.Logic
 
         public static void UpdateReview()
         {
-            var review = new Review {Id = 1, UserId = 3, Description = "Like it very much.", CreationDate = DateTime.Now};
+            var review = new Review {Id = 1, UserId = 3, Description = "Like it very much.", CreationDate = DateTime.Now, RecipeId = 1 };
 
             var reviewsService = new MainService<Review>();
             var reviewsList = reviewsService.GetList();
@@ -50,6 +50,5 @@ namespace CookBook.BLL.Logic
             Logger.InitLogger();
             Logger.Log.Info("Update recipe " + review.Id);
         }
-
     }
 }

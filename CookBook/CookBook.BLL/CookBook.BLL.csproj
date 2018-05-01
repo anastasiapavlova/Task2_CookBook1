@@ -44,7 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\AccountTypes.cs" />
-    <Compile Include="Interfaces\Iservice.cs" />
+    <Compile Include="Enums\CategoryTypes.cs" />
+    <Compile Include="Interfaces\ICompositionService.cs" />
+    <Compile Include="Interfaces\IIngredientService.cs" />
+    <Compile Include="Interfaces\IRecipeService.cs" />
+    <Compile Include="Interfaces\IReviewService.cs" />
+    <Compile Include="Interfaces\IService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Logic\DataAdder.cs" />
     <Compile Include="Logic\DataDeleter.cs" />
@@ -56,7 +62,12 @@
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CompositionService.cs" />
+    <Compile Include="Services\IngredientService.cs" />
+    <Compile Include="Services\RecipeService.cs" />
     <Compile Include="Services\MainService.cs" />
+    <Compile Include="Services\ReviewService.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CookBook.DAL\CookBook.DAL.csproj">

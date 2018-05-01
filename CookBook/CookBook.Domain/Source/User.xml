@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfUserDataModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <UserDataModel>
+<ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <User>
     <Id>1</Id>
     <Login>Meow1</Login>
     <Type>User</Type>
     <Password>lala</Password>
-  </UserDataModel>
-  <UserDataModel>
+  </User>
+  <User>
     <Id>2</Id>
     <Login>Nastya</Login>
     <Type>User</Type>
     <Password>1231</Password>
-  </UserDataModel>
-  <UserDataModel>
+  </User>
+  <User>
     <Id>3</Id>
     <Login>Lala</Login>
     <Type>Admin</Type>
     <Password>2231</Password>
-  </UserDataModel>
-</ArrayOfUserDataModel>
+  </User>
+</ArrayOfUser>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfRecipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Recipe>
+    <Id>1</Id>
+    <Category>Breakfast</Category>
+    <Name>Куриный бульон</Name>
+    <UserId>1</UserId>
+  </Recipe>
+  <Recipe>
+    <Id>2</Id>
+    <Category>Dinner</Category>
+    <Name>Оливье</Name>
+    <UserId>3</UserId>
+  </Recipe>
+  <Recipe>
+    <Id>3</Id>
+    <Category>Lunch</Category>
+    <Name>Котлеты</Name>
+    <UserId>2</UserId>
+  </Recipe>
+</ArrayOfRecipe>

@@ -1,15 +1,24 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using CookBook.Domain;
 
 namespace CookBook.Domain
 {
     public class DataContext
     {
+        private readonly string _dataLocation;
+
+        public DataContext()
+        {
+            _dataLocation = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\CookBook.Domain\\Source\\";
+            if (Directory.Exists(_dataLocation)) return;
+            Directory.CreateDirectory(_dataLocation);
+        }
+
         private List<T> GetDataFromXml<T>()
         {
             XmlLoad<List<T>> loader = new XmlLoad<List<T>>();
-            return loader.LoadData("C:/Users/a2.pavlova/source/Task2_CookBook/CookBook/DataSource/Source/" + typeof(T).Name + ".xml");
+            return loader.LoadData(_dataLocation + typeof(T).Name + ".xml");
         }
         
         public List<T> GetList<T>() => GetDataFromXml<T>();
@@ -19,7 +28,7 @@ namespace CookBook.Domain
             if (items == null) return;
             var data = GetDataFromXml<T>();
             data.AddRange(items);
-            XmlSaver.SaveData(items, "C:/Users/a2.pavlova/source/Task2_CookBook/CookBook/DataSource/Source/" + typeof(T).Name + ".xml");
+            XmlSaver.SaveData(items, _dataLocation + typeof(T).Name + ".xml");
         }
 
         public T Get<T>(T item) where T : class
@@ -33,7 +42,7 @@ namespace CookBook.Domain
             if (item == null) return;
             var data = GetDataFromXml<T>();
             data.Add(item);
-            XmlSaver.SaveData(data, "C:/Users/a2.pavlova/source/Task2_CookBook/CookBook/DataSource/Source/" + typeof(T).Name + ".xml");
+            XmlSaver.SaveData(data, _dataLocation + typeof(T).Name + ".xml");
         }
 
         public void Delete<T>(T item) where T : class
@@ -41,7 +50,7 @@ namespace CookBook.Domain
             if (item == null) return;
             var data = GetList<T>();
             data.Remove(item);
-            XmlSaver.SaveData(data, "C:/Users/a2.pavlova/source/Task2_CookBook/CookBook/DataSource/Source/" + typeof(T).Name + ".xml");
+            XmlSaver.SaveData(data, _dataLocation + typeof(T).Name + ".xml");
         }
 
         public void Update<T>(T updateItem, T item) where T : class
@@ -51,7 +60,7 @@ namespace CookBook.Domain
             if (updateItem == null) return;
             data.Remove(updateItem);
             data.Add(item);
-            XmlSaver.SaveData(data, "C:/Users/a2.pavlova/source/Task2_CookBook/CookBook/DataSource/Source/" + typeof(T).Name + ".xml");
+            XmlSaver.SaveData(data, _dataLocation + typeof(T).Name + ".xml");
         }
     }
 }

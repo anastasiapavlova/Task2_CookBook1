@@ -1,10 +1,6 @@
-﻿using CookBook.Domain.Models;
-using CookBook.Domain.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CookBook.BLL.Services;
-using CookBook.BLL.Models;
-using CookBook.BLL.Enums;
 
 namespace CookBook.BLL.Logic
 {
@@ -26,38 +22,14 @@ namespace CookBook.BLL.Logic
             foreach (var recipe in recipesList)
             {
                 var usersInfo = usersList.FirstOrDefault(s => s.Id == recipe.UserId);
-                var reviewsInfo = (from a in recipe.ReviewsId
-                                   from b in reviewsList
-                                   where b.Id.Equals(a)
-                                   select
-                                       new Models.Review()
-                                       {
-                                           Id = b.Id,
-                                           UserId = b.UserId,
-                                           Description = b.Description,
-                                           CreationDate = b.CreationDate
-                                       }).ToList();
-
-                var compositionsInfo = (from a in recipe.CompositionsId
-                                        from b in compositionsList
-                                        where b.Id.Equals(a)
-                                        select
-                                            new Models.Composition()
-                                            {
-                                                Id = b.Id,
-                                                IngredientId = b.IngredientId,
-                                                Quantity = b.Quantity
-                                            }).ToList();
-
+             
                 viewRecipeList.Add(new Models.Recipe
                 {
                     Id = recipe.Id,
-                    Category = recipe.Category,
+                    Category = (Enums.CategoryTypes)recipe.Category,
                     Name = recipe.Name,
                     UserId = recipe.Id,
                     UserName = usersInfo?.Login,
-                    Reviews = reviewsInfo,
-                    Compositions = compositionsInfo
                 });
             }
 
@@ -114,11 +86,32 @@ namespace CookBook.BLL.Logic
                     Id = review.Id,
                     UserId = review.UserId,
                     Description = review.Description,
-                    CreationDate = review.CreationDate
+                    CreationDate = review.CreationDate,
+                    RecipeId = review.RecipeId
                 });
             }
 
             return viewReviewList;
+        }
+
+        public static List<Models.Composition> ReadComposition()
+        {
+            var viewCompositionList = new List<Models.Composition>();
+            var compositionService = new MainService<Domain.Models.Composition>();
+            var compositionsList = compositionService.GetList();
+
+            foreach (var composition in compositionsList)
+            {
+                viewCompositionList.Add(new Models.Composition
+                {
+                    Id = composition.Id,
+                    IngredientId = composition.IngredientId,
+                    Quantity = composition.Quantity,
+                    RecipeId = composition.RecipeId
+                });
+            }
+
+            return viewCompositionList;
         }
     }
 }

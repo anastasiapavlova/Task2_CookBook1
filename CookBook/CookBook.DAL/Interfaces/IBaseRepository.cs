@@ -2,7 +2,7 @@
 
 namespace CookBook.DAL.Interfaces
 {
-    public interface IRepository<T>
+    public interface IBaseRepository<T>
     {
         List<T> GetList();
         void AddRange(List<T> items);

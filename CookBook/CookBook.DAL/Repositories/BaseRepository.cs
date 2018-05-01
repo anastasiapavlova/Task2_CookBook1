@@ -4,19 +4,19 @@ using CookBook.Domain;
 
 namespace CookBook.DAL.Repositories
 {
-    public class Repository<T> : IRepository<T>
+    public class BaseRepository<T> : IBaseRepository<T>
         where T : class
     {
         public void Add(T item)
         {
             var dataContext = new DataContext();
-            dataContext.Add<T>(item);
+            dataContext.Add(item);
         }
 
         public void Delete(T item)
         {
             var dataContext = new DataContext();
-            dataContext.Delete<T>(item);
+            dataContext.Delete(item);
         }
 
         public List<T> GetList()

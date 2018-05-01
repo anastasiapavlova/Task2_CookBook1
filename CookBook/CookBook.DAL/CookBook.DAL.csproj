@@ -43,9 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="Interfaces\IReviewRepository.cs" />
+    <Compile Include="Interfaces\IRecipeRepository.cs" />
+    <Compile Include="Interfaces\IIngredientRepository.cs" />
+    <Compile Include="Interfaces\ICompositionRepository.cs" />
+    <Compile Include="Interfaces\IBaseRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\CompositionRepository.cs" />
+    <Compile Include="Repositories\IngredientRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\RecipeRepository.cs" />
+    <Compile Include="Repositories\ReviewRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CookBook.Domain\CookBook.Domain.csproj">

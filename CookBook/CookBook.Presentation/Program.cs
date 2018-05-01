@@ -1,6 +1,5 @@
 ﻿using CookBook.BLL.Logging;
 using CookBook.BLL.Logic;
-using CookBook.BLL.Models;
 using System;
 
 namespace CookBook.Presentation
@@ -12,7 +11,7 @@ namespace CookBook.Presentation
             try
             {
                 //add list recipes
-                DataAdder.AddRecipes();
+               DataAdder.AddRecipes();
 
                 //add list ingredients
                 DataAdder.AddIngredients();
