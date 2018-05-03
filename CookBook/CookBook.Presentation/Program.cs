@@ -10,7 +10,7 @@ namespace CookBook.Presentation
         {
             try
             {
-                //DataAdder.AddUsers();
+                DataAdder.AddUsers();
                 ////add list recipes
                 //DataAdder.AddRecipes();
 

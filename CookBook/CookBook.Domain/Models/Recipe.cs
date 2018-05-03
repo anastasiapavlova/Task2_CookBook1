@@ -9,11 +9,10 @@ namespace CookBook.Domain.Models
     {
         public int Id { get; set; }
         public CategoryTypes Category { get; set; }
-        [Required]
         public string Name { get; set; }
         public int UserId { get; set; }
-
-        public Composition Composition { get; set; }
+        
+        public List<Composition> Composition { get; set; }
         public List<Review> Review { get; set; }
         public User User { get; set; }
 
