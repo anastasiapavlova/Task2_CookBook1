@@ -1,13 +1,21 @@
-﻿using CookBook.Domain.Enums;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using CookBook.Domain.Enums;
 
 namespace CookBook.Domain.Models
 {
     public class User
     {
         public int Id { get; set; }
+        [Required]
         public string Login { get; set; }
         public AccountTypes Type { get; set; }
+        [Required]
         public string Password { get; set; }
+
+        public List<Recipe> Recipe { get; set; }
+        public List<Review> Review { get; set; }
 
         public override bool Equals(object obj)
         {

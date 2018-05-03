@@ -1,4 +1,7 @@
-﻿using CookBook.Domain.Enums;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using CookBook.Domain.Enums;
 
 namespace CookBook.Domain.Models
 {
@@ -6,8 +9,13 @@ namespace CookBook.Domain.Models
     {
         public int Id { get; set; }
         public CategoryTypes Category { get; set; }
+        [Required]
         public string Name { get; set; }
         public int UserId { get; set; }
+
+        public Composition Composition { get; set; }
+        public List<Review> Review { get; set; }
+        public User User { get; set; }
 
         public override bool Equals(object obj)
         {

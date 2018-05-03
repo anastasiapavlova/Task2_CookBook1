@@ -10,28 +10,29 @@ namespace CookBook.Presentation
         {
             try
             {
-                //add list recipes
-               //DataAdder.AddRecipes();
+                //DataAdder.AddUsers();
+                ////add list recipes
+                //DataAdder.AddRecipes();
 
-               // //add list ingredients
-               // DataAdder.AddIngredients();
+                ////add list ingredients
+                //DataAdder.AddIngredients();
 
-               // //add user list
-               // DataAdder.AddUsers();
+                ////add user list
+                //DataAdder.AddUsers();
 
-               // //add review list
-               // DataAdder.AddReviews();
+                ////add review list
+                //DataAdder.AddReviews();
 
-                //add list compositions
-                DataAdder.AddCompositions();
+                ////add list compositions
+                //DataAdder.AddCompositions();
 
-                //read existing recipes
-                var recipes = DataReader.ReadRecipes();
-                foreach (var recipe in recipes)
-                {
-                    Console.WriteLine("Рецепт: " + recipe.Name + "\n Категория: " + recipe.Category + "\n Пользователь: " + recipe.UserName);
-                }
-                Console.Read();
+                ////read existing recipes
+                //var recipes = DataReader.ReadRecipes();
+                //foreach (var recipe in recipes)
+                //{
+                //    Console.WriteLine("Рецепт: " + recipe.Name + "\n Категория: " + recipe.Category + "\n Пользователь: " + recipe.UserName);
+                //}
+                //Console.Read();
 
                 //read existing users
                 var users = DataReader.ReadUsers();

@@ -2,6 +2,7 @@
 using CookBook.Domain;
 using CookBook.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CookBook.DAL.Repositories
 {
@@ -9,42 +10,54 @@ namespace CookBook.DAL.Repositories
     {
         public void Add(User item)
         {
-            //var dataContext = new DataContext();
-            //dataContext.Add(item);
-
-            CookBookContext context = new CookBookContext();
-            context.Users.Add(item);
-            context.SaveChanges();
+            using (var context = new CookBookContext())
+            {
+                context.Users.Add(item);
+                context.SaveChanges();
+            }
         }
 
         public void AddRange(List<User> items)
         {
-            var dataContext = new DataContext();
-            dataContext.AddRange(items);
+            using (var context = new CookBookContext())
+            {
+                context.Users.AddRange(items);
+                context.SaveChanges();
+            }
         }
 
         public void Delete(User item)
         {
-            var dataContext = new DataContext();
-            dataContext.Delete(item);
-        }
-
-        public User Get(User item)
-        {
-            var dataContext = new DataContext();
-            return dataContext.Get(item);
+            using (var context = new CookBookContext())
+            {
+                if (item != null)
+                {
+                    context.Users.Attach(item);
+                    context.Users.Remove(item);
+                    context.SaveChanges();
+                }
+            }
         }
 
         public List<User> GetList()
         {
-            var dataContext = new DataContext();
-            return dataContext.GetList<User>();
+            using (var context = new CookBookContext())
+            {
+                return context.Users.ToList();
+            }
         }
 
         public void Update(User updateItem, User item)
         {
-            var dataContext = new DataContext();
-            dataContext.Update(updateItem, item);
+            using (var context = new CookBookContext())
+            {
+                if (updateItem != null && item != null)
+                {
+                    context.Users.Attach(updateItem);
+                    updateItem = item;
+                    context.SaveChanges();
+                }
+            }
         }
     }
 }

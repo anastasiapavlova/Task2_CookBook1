@@ -2,6 +2,7 @@
 using CookBook.Domain;
 using CookBook.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CookBook.DAL.Repositories
 {
@@ -18,32 +19,45 @@ namespace CookBook.DAL.Repositories
 
         public void AddRange(List<Composition> items)
         {
-            var dataContext = new DataContext();
-            dataContext.AddRange(items);
+            using (var context = new CookBookContext())
+            {
+                context.Compositions.AddRange(items);
+                context.SaveChanges();
+            }
         }
-
+        
         public void Delete(Composition item)
         {
-            var dataContext = new DataContext();
-            dataContext.Delete(item);
-        }
-
-        public Composition Get(Composition item)
-        {
-            var dataContext = new DataContext();
-            return dataContext.Get(item);
+            using (var context = new CookBookContext())
+            {
+                if (item != null)
+                {
+                    context.Compositions.Attach(item);
+                    context.Compositions.Remove(item);
+                    context.SaveChanges();
+                }
+            }
         }
 
         public List<Composition> GetList()
         {
-            var dataContext = new DataContext();
-            return dataContext.GetList<Composition>();
+            using (var context = new CookBookContext())
+            {
+                return context.Compositions.ToList();
+            }
         }
 
         public void Update(Composition updateItem, Composition item)
         {
-            var dataContext = new DataContext();
-            dataContext.Update(updateItem, item);
+            using (var context = new CookBookContext())
+            {
+                if (updateItem != null && item != null)
+                {
+                    context.Compositions.Attach(updateItem);
+                    updateItem = item;
+                    context.SaveChanges();
+                }
+            }
         }
     }
 }

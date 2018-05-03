@@ -1,9 +1,16 @@
-﻿namespace CookBook.Domain.Models
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CookBook.Domain.Models
 {
     public class Ingredient
     {
-        public int Id { get; set; } 
+        [Key]
+        public int Id { get; set; }
         public string Name { get; set; }
+
+        public List<Composition> Composition { get; set; }
 
         public override bool Equals(object obj)
         {

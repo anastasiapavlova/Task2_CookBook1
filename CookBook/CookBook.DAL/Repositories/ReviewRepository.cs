@@ -2,6 +2,7 @@
 using CookBook.Domain;
 using CookBook.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CookBook.DAL.Repositories
 {
@@ -9,42 +10,54 @@ namespace CookBook.DAL.Repositories
     {
         public void Add(Review item)
         {
-            //var dataContext = new DataContext();
-            //dataContext.Add(item);
-
-            CookBookContext context = new CookBookContext();
-            context.Reviews.Add(item);
-            context.SaveChanges();
+            using (var context = new CookBookContext())
+            {
+                context.Reviews.Add(item);
+                context.SaveChanges();
+            }
         }
 
         public void AddRange(List<Review> items)
         {
-            var dataContext = new DataContext();
-            dataContext.AddRange(items);
+            using (var context = new CookBookContext())
+            {
+                context.Reviews.AddRange(items);
+                context.SaveChanges();
+            }
         }
 
         public void Delete(Review item)
         {
-            var dataContext = new DataContext();
-            dataContext.Delete(item);
-        }
-
-        public Review Get(Review item)
-        {
-            var dataContext = new DataContext();
-            return dataContext.Get(item);
+            using (var context = new CookBookContext())
+            {
+                if (item != null)
+                {
+                    context.Reviews.Attach(item);
+                    context.Reviews.Remove(item);
+                    context.SaveChanges();
+                }
+            }
         }
 
         public List<Review> GetList()
         {
-            var dataContext = new DataContext();
-            return dataContext.GetList<Review>();
+            using (var context = new CookBookContext())
+            {
+                return context.Reviews.ToList();
+            }
         }
 
         public void Update(Review updateItem, Review item)
         {
-            var dataContext = new DataContext();
-            dataContext.Update(updateItem, item);
+            using (var context = new CookBookContext())
+            {
+                if (updateItem != null && item != null)
+                {
+                    context.Reviews.Attach(updateItem);
+                    updateItem = item;
+                    context.SaveChanges();
+                }
+            }
         }
     }
 }

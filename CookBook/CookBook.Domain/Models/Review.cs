@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CookBook.Domain.Models
 {
@@ -7,8 +8,12 @@ namespace CookBook.Domain.Models
         public int Id { get; set; }
         public int UserId { get; set; }
         public int RecipeId { get; set; }
+        [Required]
         public string Description { get; set; }
         public DateTime CreationDate { get; set; }
+
+        public Recipe Recipe { get; set; }
+        public User User { get; set; }
 
         public override bool Equals(object obj)
         {
