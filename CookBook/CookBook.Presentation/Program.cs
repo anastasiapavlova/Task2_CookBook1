@@ -11,16 +11,16 @@ namespace CookBook.Presentation
             try
             {
                 //add list recipes
-               DataAdder.AddRecipes();
+               //DataAdder.AddRecipes();
 
-                //add list ingredients
-                DataAdder.AddIngredients();
+               // //add list ingredients
+               // DataAdder.AddIngredients();
 
-                //add user list
-                DataAdder.AddUsers();
+               // //add user list
+               // DataAdder.AddUsers();
 
-                //add review list
-                DataAdder.AddReviews();
+               // //add review list
+               // DataAdder.AddReviews();
 
                 //add list compositions
                 DataAdder.AddCompositions();

@@ -9,8 +9,12 @@ namespace CookBook.DAL.Repositories
     {
         public void Add(User item)
         {
-            var dataContext = new DataContext();
-            dataContext.Add(item);
+            //var dataContext = new DataContext();
+            //dataContext.Add(item);
+
+            CookBookContext context = new CookBookContext();
+            context.Users.Add(item);
+            context.SaveChanges();
         }
 
         public void AddRange(List<User> items)
