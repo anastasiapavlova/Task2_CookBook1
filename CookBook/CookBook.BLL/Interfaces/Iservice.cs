@@ -8,6 +8,6 @@ namespace CookBook.BLL.Interfaces
         void AddItem(T item);
         void AddItems(List<T> items);
         void DeleteItem(T item);
-        void UpdateItem(T updateItem, T item);
+        void UpdateItem(T item);
     }
 }

@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContext.cs" />
     <Compile Include="Enums\AccountTypes.cs" />
     <Compile Include="Enums\CategoryTypes.cs" />
     <Compile Include="Models\Composition.cs" />
@@ -56,8 +55,6 @@
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlLoader.cs" />
-    <Compile Include="XmlSaver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

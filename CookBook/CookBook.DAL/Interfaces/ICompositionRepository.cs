@@ -7,7 +7,7 @@ namespace CookBook.DAL.Interfaces
     {
         List<Composition> GetList();
         void AddRange(List<Composition> items);
-        void Update(Composition updateItem, Composition item);
+        void Update(Composition item);
         void Delete(Composition item);
         void Add(Composition item);
     }

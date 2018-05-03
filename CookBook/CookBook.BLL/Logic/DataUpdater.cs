@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using CookBook.BLL.Logging;
 using CookBook.BLL.Services;
 using CookBook.Domain.Enums;
@@ -11,13 +10,11 @@ namespace CookBook.BLL.Logic
     {
         public static void UpdateRecipe()
         {
-            var recipe = new Recipe { Id = 2, Category = CategoryTypes.Dinner, Name = "Летний", UserId = 3};
+            var recipe = new Recipe { Id = 2, Category = CategoryTypes.Breakfast, Name = "PastaNyam", UserId = 2 };
 
-            var recipesService = new MainService<Recipe>();
-            var recipesList = recipesService.GetList();
-            var updatingRecipe = recipesList.FirstOrDefault(s => s.Id == recipe.Id);
+            var recipesService = new RecipeService();
 
-            recipesService.UpdateItem(updatingRecipe, recipe);
+            recipesService.UpdateItem(recipe);
 
             Logger.InitLogger();
             Logger.Log.Info("Update recipe " + recipe.Name);
@@ -25,13 +22,10 @@ namespace CookBook.BLL.Logic
 
         public static void UpdateIngredient()
         {
-            var ingredient = (new Ingredient{ Id = 3, Name = "Морковка" });
+            var ingredient = (new Ingredient{ Id = 3, Name = "Bread" });
 
-            var ingredientsService = new MainService<Ingredient>();
-            var ingrediensList = ingredientsService.GetList();
-            var updatingIngredient = ingrediensList.FirstOrDefault(s => s.Id == ingredient.Id);
-
-            ingredientsService.UpdateItem(updatingIngredient, ingredient);
+            var ingredientsService = new IngredientService();
+            ingredientsService.UpdateItem(ingredient);
 
             Logger.InitLogger();
             Logger.Log.Info("Update ingredient " + ingredient.Name);
@@ -39,16 +33,24 @@ namespace CookBook.BLL.Logic
 
         public static void UpdateReview()
         {
-            var review = new Review {Id = 1, UserId = 3, Description = "Like it very much.", CreationDate = DateTime.Now, RecipeId = 1 };
+            var review = new Review {Id = 3, UserId = 3, Description = "Like it very much.", CreationDate = DateTime.Now, RecipeId = 3 };
 
-            var reviewsService = new MainService<Review>();
-            var reviewsList = reviewsService.GetList();
-            var updatingReview = reviewsList.FirstOrDefault(s => s.Id == review.Id);
-
-            reviewsService.UpdateItem(updatingReview, review);
+            var reviewsService = new ReviewService();
+            reviewsService.UpdateItem(review);
 
             Logger.InitLogger();
             Logger.Log.Info("Update recipe " + review.Id);
+        }
+
+        public static void UpdateUser()
+        {
+            var user = new User { Id = 4, Login = "Meow14", Type = AccountTypes.User, Password = "miu" };
+
+            var userService = new UserService();
+            userService.UpdateItem(user);
+
+            Logger.InitLogger();
+            Logger.Log.Info("Update user " + user.Id);
         }
     }
 }

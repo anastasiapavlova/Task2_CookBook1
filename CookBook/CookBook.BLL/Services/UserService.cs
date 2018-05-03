@@ -34,9 +34,9 @@ namespace CookBook.BLL.Services
             repository.Delete(item);
         }
 
-        public void UpdateItem(User updateItem, User item)
+        public void UpdateItem(User item)
         {
-            repository.Update(updateItem, item);
+            repository.Update(item);
         }
     }
 }

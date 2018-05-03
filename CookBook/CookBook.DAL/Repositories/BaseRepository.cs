@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using CookBook.DAL.Interfaces;
-using CookBook.Domain;
 
 namespace CookBook.DAL.Repositories
 {
@@ -9,38 +10,62 @@ namespace CookBook.DAL.Repositories
     {
         public void Add(T item)
         {
-            var dataContext = new DataContext();
-            dataContext.Add(item);
+            using (var context = new CookBookContext())
+            {
+                if (item != null)
+                {
+                    var dbSet = context.Set<T>();
+                    dbSet.Add(item);
+                    context.SaveChanges();
+                }
+            }
         }
 
         public void Delete(T item)
         {
-            var dataContext = new DataContext();
-            dataContext.Delete(item);
+            using (var context = new CookBookContext())
+            {
+                if (item != null)
+                {
+                    var dbSet = context.Set<T>();
+                    dbSet.Remove(item);
+                    context.SaveChanges();
+                }
+            }
         }
 
         public List<T> GetList()
         {
-            var dataContext = new DataContext();
-            return dataContext.GetList<T>();
+            using (var context = new CookBookContext())
+            {
+                var dbSet = context.Set<T>();
+                return dbSet.AsNoTracking().ToList();
+            }
         }
 
         public void AddRange(List<T> items)
         {
-            var dataContext = new DataContext();
-            dataContext.AddRange(items);
+            using (var context = new CookBookContext())
+            {
+                if (items != null)
+                {
+                    var dbSet = context.Set<T>();
+                    dbSet.AddRange(items);
+                    context.SaveChanges();
+                }
+            }
         }
 
-        public T Get(T item)
+        public void Update(T item)
         {
-            var dataContext = new DataContext();
-            return dataContext.Get(item);
-        }
-
-        public void Update(T updateItem, T item)
-        {
-            var dataContext = new DataContext();
-            dataContext.Update(updateItem, item);
+            using (var context = new CookBookContext())
+            {
+                if (item != null)
+                {
+                    context.Entry(item).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+            }
         }
     }
 }

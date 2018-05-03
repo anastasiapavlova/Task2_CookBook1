@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using CookBook.BLL.Services;
 
 namespace CookBook.BLL.Logic
@@ -9,27 +8,17 @@ namespace CookBook.BLL.Logic
         public static List<Models.Recipe> ReadRecipes()
         {
             var viewRecipeList = new List<Models.Recipe>();
-            var recipeService = new MainService<Domain.Models.Recipe>();
-            var userService = new MainService<Domain.Models.User>();
-            var reviewService = new MainService<Domain.Models.Review>();
-            var compositionService = new MainService<Domain.Models.Composition>();
-
+            var recipeService = new RecipeService();
             var recipesList = recipeService.GetList();
-            var usersList = userService.GetList();
-            var reviewsList = reviewService.GetList();
-            var compositionsList = compositionService.GetList();
 
             foreach (var recipe in recipesList)
             {
-                var usersInfo = usersList.FirstOrDefault(s => s.Id == recipe.UserId);
-             
                 viewRecipeList.Add(new Models.Recipe
                 {
                     Id = recipe.Id,
                     Category = (Enums.CategoryTypes)recipe.Category,
                     Name = recipe.Name,
-                    UserId = recipe.Id,
-                    UserName = usersInfo?.Login,
+                    UserId = recipe.Id
                 });
             }
 
@@ -39,7 +28,7 @@ namespace CookBook.BLL.Logic
         public static List<Models.User> ReadUsers()
         {
             var viewUserList = new List<Models.User>();
-            var userService = new MainService<Domain.Models.User>();
+            var userService = new UserService();
             var usersList = userService.GetList();
 
             foreach (var user in usersList)
@@ -58,7 +47,7 @@ namespace CookBook.BLL.Logic
         public static List<Models.Ingredient> ReadIngredients()
         {
             var viewIngredientList = new List<Models.Ingredient>();
-            var ingredientsService = new MainService<Domain.Models.Ingredient>();
+            var ingredientsService = new IngredientService();
             var ingrediensList = ingredientsService.GetList();
 
             foreach (var ingredient in ingrediensList)
@@ -76,7 +65,7 @@ namespace CookBook.BLL.Logic
         public static List<Models.Review> ReadReviews()
         {
             var viewReviewList = new List<Models.Review>();
-            var reviewsService = new MainService<Domain.Models.Review>();
+            var reviewsService = new ReviewService();
             var reviewsList = reviewsService.GetList();
 
             foreach (var review in reviewsList)
@@ -97,7 +86,7 @@ namespace CookBook.BLL.Logic
         public static List<Models.Composition> ReadComposition()
         {
             var viewCompositionList = new List<Models.Composition>();
-            var compositionService = new MainService<Domain.Models.Composition>();
+            var compositionService = new CompositionService();
             var compositionsList = compositionService.GetList();
 
             foreach (var composition in compositionsList)

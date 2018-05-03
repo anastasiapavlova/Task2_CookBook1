@@ -10,29 +10,28 @@ namespace CookBook.Presentation
         {
             try
             {
+                //add user list
                 DataAdder.AddUsers();
-                ////add list recipes
-                //DataAdder.AddRecipes();
 
-                ////add list ingredients
-                //DataAdder.AddIngredients();
+                //add list recipes
+                DataAdder.AddRecipes();
 
-                ////add user list
-                //DataAdder.AddUsers();
+                //add list ingredients
+                DataAdder.AddIngredients();
 
-                ////add review list
-                //DataAdder.AddReviews();
+                //add review list
+                DataAdder.AddReviews();
 
-                ////add list compositions
-                //DataAdder.AddCompositions();
+                //add list compositions
+                DataAdder.AddCompositions();
 
-                ////read existing recipes
-                //var recipes = DataReader.ReadRecipes();
-                //foreach (var recipe in recipes)
-                //{
-                //    Console.WriteLine("Рецепт: " + recipe.Name + "\n Категория: " + recipe.Category + "\n Пользователь: " + recipe.UserName);
-                //}
-                //Console.Read();
+                //read existing recipes
+                var recipes = DataReader.ReadRecipes();
+                foreach (var recipe in recipes)
+                {
+                    Console.WriteLine("Id: " + recipe.Id + " Name: " + recipe.Name);
+                }
+                Console.Read();
 
                 //read existing users
                 var users = DataReader.ReadUsers();
@@ -61,20 +60,30 @@ namespace CookBook.Presentation
                 //delete user
                 DataDeleter.DeleteUser();
 
-                //delete recipe
-                DataDeleter.DeleteRecipes();
-
                 //delete ingredients
                 DataDeleter.DeleteIngredient();
+
+                //delete compositions
+                DataDeleter.DeleteComposition();
+
+                //delete recipe
+                DataDeleter.DeleteReview();
+
+                //delete recipe
+                DataDeleter.DeleteRecipes();
 
                 //update ingredients
                 DataUpdater.UpdateIngredient();
 
-                //update recipes
-                DataUpdater.UpdateRecipe();
-
                 //update review
                 DataUpdater.UpdateReview();
+
+                //update user
+                DataUpdater.UpdateUser();
+
+                //update recipes
+                DataUpdater.UpdateRecipe();
+                
             }
             catch (Exception e)
             {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace CookBook.Domain.Models
 {
@@ -13,22 +12,5 @@ namespace CookBook.Domain.Models
 
         public Recipe Recipe { get; set; }
         public User User { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null)
-                return false;
-            Review m = obj as Review;
-            if (m as Review == null)
-                return false;
-
-            return m.Id == this.Id && m.UserId == this.UserId && m.Description == this.Description &&
-                   m.CreationDate == this.CreationDate;
-        }
-
-        public override int GetHashCode()
-        {
-            return this.ToString().GetHashCode();
-        }
     }
 }

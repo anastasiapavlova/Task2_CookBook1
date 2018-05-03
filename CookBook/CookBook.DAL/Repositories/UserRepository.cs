@@ -1,7 +1,7 @@
 ﻿using CookBook.DAL.Interfaces;
-using CookBook.Domain;
 using CookBook.Domain.Models;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace CookBook.DAL.Repositories
@@ -47,14 +47,13 @@ namespace CookBook.DAL.Repositories
             }
         }
 
-        public void Update(User updateItem, User item)
+        public void Update(User item)
         {
             using (var context = new CookBookContext())
             {
-                if (updateItem != null && item != null)
+                if(item != null)
                 {
-                    context.Users.Attach(updateItem);
-                    updateItem = item;
+                    context.Entry(item).State = EntityState.Modified;
                     context.SaveChanges();
                 }
             }
