@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using CookBook.BLL.Logging;
 using CookBook.BLL.Services;
@@ -72,8 +73,8 @@ namespace CookBook.BLL.Logic
             compositions.Add(new Composition { Id = 2, IngredientId = 2, Quantity = 3, RecipeId = 2 });
             compositions.Add(new Composition { Id = 3, IngredientId = 1, Quantity = 4, RecipeId = 3 });
 
-            var userService = new MainService<Composition>();
-            userService.AddItems(compositions);
+            var compositionService = new CompositionService();
+            compositionService.AddItem(compositions.FirstOrDefault());
 
             Logger.InitLogger();
             Logger.Log.Info("Add " + compositions.Count + " composition(-s) ");

@@ -9,8 +9,11 @@ namespace CookBook.DAL.Repositories
     {
         public void Add(Composition item)
         {
-            var dataContext = new DataContext();
-            dataContext.Add(item);
+            using (var context = new CookBookContext())
+            {
+                context.Compositions.Add(item);
+                context.SaveChanges();
+            }
         }
 
         public void AddRange(List<Composition> items)
