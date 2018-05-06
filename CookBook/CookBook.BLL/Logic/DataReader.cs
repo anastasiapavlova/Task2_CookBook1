@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
+using CookBook.BLL.Models;
 using CookBook.BLL.Services;
 
 namespace CookBook.BLL.Logic
 {
     public class DataReader
     {
-        public static List<Models.Recipe> ReadRecipes()
+        public static List<RecipeModel> ReadRecipes()
         {
-            var viewRecipeList = new List<Models.Recipe>();
+            var viewRecipeList = new List<RecipeModel>();
             var recipeService = new RecipeService();
             var recipesList = recipeService.GetList();
 
             foreach (var recipe in recipesList)
             {
-                viewRecipeList.Add(new Models.Recipe
+                viewRecipeList.Add(new RecipeModel
                 {
                     Id = recipe.Id,
                     Category = (Enums.CategoryTypes)recipe.Category,
@@ -25,15 +26,15 @@ namespace CookBook.BLL.Logic
             return viewRecipeList;
         }
 
-        public static List<Models.User> ReadUsers()
+        public static List<UserModel> ReadUsers()
         {
-            var viewUserList = new List<Models.User>();
+            var viewUserList = new List<UserModel>();
             var userService = new UserService();
             var usersList = userService.GetList();
 
             foreach (var user in usersList)
             {
-                viewUserList.Add(new Models.User()
+                viewUserList.Add(new UserModel()
                 {
                     Id = user.Id,
                     Login = user.Login,
@@ -44,15 +45,15 @@ namespace CookBook.BLL.Logic
             return viewUserList;
         }
 
-        public static List<Models.Ingredient> ReadIngredients()
+        public static List<IngredientModel> ReadIngredients()
         {
-            var viewIngredientList = new List<Models.Ingredient>();
+            var viewIngredientList = new List<IngredientModel>();
             var ingredientsService = new IngredientService();
             var ingrediensList = ingredientsService.GetList();
 
             foreach (var ingredient in ingrediensList)
             {
-                viewIngredientList.Add(new Models.Ingredient
+                viewIngredientList.Add(new IngredientModel
                 {
                     Id = ingredient.Id,
                     Name = ingredient.Name
@@ -62,15 +63,15 @@ namespace CookBook.BLL.Logic
             return viewIngredientList;
         }
 
-        public static List<Models.Review> ReadReviews()
+        public static List<ReviewModel> ReadReviews()
         {
-            var viewReviewList = new List<Models.Review>();
+            var viewReviewList = new List<ReviewModel>();
             var reviewsService = new ReviewService();
             var reviewsList = reviewsService.GetList();
 
             foreach (var review in reviewsList)
             {
-                viewReviewList.Add(new Models.Review
+                viewReviewList.Add(new ReviewModel
                 {
                     Id = review.Id,
                     UserId = review.UserId,
@@ -83,15 +84,15 @@ namespace CookBook.BLL.Logic
             return viewReviewList;
         }
 
-        public static List<Models.Composition> ReadComposition()
+        public static List<CompositionModel> ReadComposition()
         {
-            var viewCompositionList = new List<Models.Composition>();
+            var viewCompositionList = new List<CompositionModel>();
             var compositionService = new CompositionService();
             var compositionsList = compositionService.GetList();
 
             foreach (var composition in compositionsList)
             {
-                viewCompositionList.Add(new Models.Composition
+                viewCompositionList.Add(new CompositionModel
                 {
                     Id = composition.Id,
                     IngredientId = composition.IngredientId,

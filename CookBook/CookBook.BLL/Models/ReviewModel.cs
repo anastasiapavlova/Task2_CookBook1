@@ -2,7 +2,7 @@
 
 namespace CookBook.BLL.Models
 {
-    public class Review
+    public class ReviewModel
     {
         public int Id { get; set; }
         public int UserId { get; set; }

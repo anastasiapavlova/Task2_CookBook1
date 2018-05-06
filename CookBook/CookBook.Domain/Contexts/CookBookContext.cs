@@ -5,9 +5,9 @@ namespace CookBook.DAL
 {
     public class CookBookContext : DbContext
     {
-        public CookBookContext() : base("DBConnection")
+        public CookBookContext() : base("CookBook")
         {
-            if (!Database.Exists("DBConnection"))
+            if (!Database.Exists("CookBook"))
             {
                 Database.SetInitializer<CookBookContext>(new DropCreateDatabaseIfModelChanges<CookBookContext>());
             }

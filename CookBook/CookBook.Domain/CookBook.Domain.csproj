@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contexts\CookBookContext.cs" />
     <Compile Include="Enums\AccountTypes.cs" />
     <Compile Include="Enums\CategoryTypes.cs" />
     <Compile Include="Models\Composition.cs" />

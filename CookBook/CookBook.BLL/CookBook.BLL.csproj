@@ -57,11 +57,11 @@
     <Compile Include="Logic\DataDeleter.cs" />
     <Compile Include="Logic\DataReader.cs" />
     <Compile Include="Logic\DataUpdater.cs" />
-    <Compile Include="Models\Composition.cs" />
-    <Compile Include="Models\Ingredient.cs" />
-    <Compile Include="Models\Recipe.cs" />
-    <Compile Include="Models\Review.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\CompositionModel.cs" />
+    <Compile Include="Models\IngredientModel.cs" />
+    <Compile Include="Models\RecipeModel.cs" />
+    <Compile Include="Models\ReviewModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CompositionService.cs" />
     <Compile Include="Services\IngredientService.cs" />

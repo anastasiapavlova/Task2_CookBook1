@@ -1,6 +1,6 @@
 ﻿namespace CookBook.BLL.Models
 {
-    public class Composition
+    public class CompositionModel
     {
         public int Id { get; set; }
         public int RecipeId { get; set; }
