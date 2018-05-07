@@ -1,0 +1,137 @@
+﻿@model IEnumerable<CookBook.BLL.Models.RecipeModel>
+
+@{
+    ViewBag.Title = "Index";
+    var grid = new WebGrid(source: Model, 
+        defaultSort: "Name",  
+        rowsPerPage: 5);
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../Content/business-casual.min.css" rel="stylesheet">
+
+</head>
+
+<style type="text/css">
+    .webgrid-table {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: 1.2em;
+        width: 100%;
+        display: table;
+        border-collapse: separate;
+        background-color: white;
+    }
+
+    .webgrid-header {
+        padding-bottom: 4px;
+        padding-top: 5px;
+        text-align: left;
+        color: #e6a756
+    }
+
+    .webgrid-columns {
+
+    }
+
+    .webgrid-row-style {
+        padding: 3px 7px 2px;
+    
+    }
+</style>
+
+<body>
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+        <span class="site-heading-upper text-primary mb-3">электронная</span>
+        <span class="site-heading-lower">кулинарная книга</span>
+    </h1>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="Index.cshtml">Список рецептов</a>
+                    </li>
+                    @*<li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="Registration.html">Регистрация/Авторизация</a>
+                    </li>*@
+                    @*<li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="Admin.html">Админская</a>
+                    </li>*@
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-section about-heading">
+        <div class="container">
+            <div class="about-heading-content">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-10 mx-auto">
+                        <div class="bg-faded rounded p-5">
+                            <h2 class="section-heading mb-4">
+                                <span class="section-heading-lower">Список рецептов</span>
+                            </h2>
+                            <p>Вы можете добавлять рецепты, редактировать их и удалять созданные ранее.</p>
+                            @grid.GetHtml(
+                                tableStyle:"table table-bordered",
+                                headerStyle:"webgrid-header",
+                                footerStyle:"webgrid-footer",
+                                alternatingRowStyle:"webgrid-alternating-row",
+                                rowStyle:"webgrid-row-style",
+                                columns:grid.Columns(
+                                    grid.Column(format:@<text><div>@(item.WebGrid.Rows.IndexOf(item)+1)</div></text>),
+                                    grid.Column(columnName:"Name", header: "Название", canSort: false),
+                                    grid.Column(columnName:"Category",header: "Категория", canSort: false),
+                                    grid.Column(header: "Удалить", format: (item) =>
+                                    {
+                                        var link = Html.ActionLink("Удалить", "DeleteRecipe", new { id = item.id });
+                                        return link;
+                                    })
+                                    ))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer text-faded text-center py-5">
+        <div class="container">
+            <p class="m-0 small">Copyright &copy; Your Website 2018</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../Scripts/jquery.min.js"></script>
+    <script src="../../Scripts/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+
+

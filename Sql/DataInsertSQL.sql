@@ -20,12 +20,12 @@ Insert Ingredients VALUES ('Spaghetti');
 Insert Ingredients VALUES ('Flour');
 Insert Ingredients VALUES ('Sugar');
 
-Insert Compositions VALUES (1, 1, 1, 5);
-Insert Compositions VALUES (2, 2, 2, 1);
-Insert Compositions VALUES (3, 2, 3, 2);
-Insert Compositions VALUES (4, 2, 5, 1);
-Insert Compositions VALUES (5, 3, 3, 4);
-Insert Compositions VALUES (6, 3, 5, 3);
-Insert Compositions VALUES (7, 3, 6, 1);
-Insert Compositions VALUES (8, 4, 4, 3);
+Insert Compositions VALUES (1, 1, 5);
+Insert Compositions VALUES (2, 2, 1);
+Insert Compositions VALUES (2, 3, 2);
+Insert Compositions VALUES (2, 5, 1);
+Insert Compositions VALUES (3, 3, 4);
+Insert Compositions VALUES (3, 5, 3);
+Insert Compositions VALUES (3, 6, 1);
+Insert Compositions VALUES (4, 4, 3);
 
