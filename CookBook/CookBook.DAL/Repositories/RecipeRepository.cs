@@ -26,14 +26,13 @@ namespace CookBook.DAL.Repositories
             }
         }
 
-        public void Delete(Recipe item)
+        public void Delete(int id)
         {
             using (var context = new CookBookContext())
             {
-                if (item != null)
+                if (id!=null)
                 {
-                    context.Recipes.Attach(item);
-                    context.Recipes.Remove(item);
+                    context.Recipes.Remove(context.Recipes.FirstOrDefault(x=>x.Id == id));
                     context.SaveChanges();
                 }
             }

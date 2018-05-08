@@ -18,8 +18,7 @@ namespace CookBook.BLL.Logic
                 {
                     Id = recipe.Id,
                     Category = (Enums.CategoryTypes)recipe.Category,
-                    Name = recipe.Name,
-                    UserId = recipe.Id
+                    Name = recipe.Name
                 });
             }
 

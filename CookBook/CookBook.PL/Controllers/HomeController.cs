@@ -13,12 +13,11 @@ namespace CookBook.PL.Controllers
             return View(recipelList);
         }
         
-        [HttpPost]
-        public string DeleteRecipe(object item)
+        public ActionResult DeleteRecipe(int id)
         {
-
+            DataDeleter.DeleteRecipes(id);
             List<RecipeModel> recipelList = DataReader.ReadRecipes();
-            return "Meow";
+            return RedirectToAction("Index");
         }
     }
 }

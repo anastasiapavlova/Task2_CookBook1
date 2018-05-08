@@ -8,15 +8,13 @@ namespace CookBook.BLL.Logic
 {
     public static class DataDeleter
     {
-        public static void DeleteRecipes()
+        public static void DeleteRecipes(int id)
         {
-            var recipe = new Recipe { Id = 4,Category = CategoryTypes.Breakfast, Name = "Pancakes", UserId = 1 };
-            
             var recipeService = new RecipeService();
-            recipeService.DeleteItem(recipe);
+            recipeService.DeleteItem(id);
 
             Logger.InitLogger();
-            Logger.Log.Info("Delete recipe " + recipe.Name);
+            Logger.Log.Info("Delete recipe " + id);
         }
 
         public static void DeleteIngredient()

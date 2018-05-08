@@ -8,7 +8,7 @@ namespace CookBook.BLL.Interfaces
         List<Recipe> GetList();
         void AddItem(Recipe item);
         void AddItems(List<Recipe> items);
-        void DeleteItem(Recipe item);
+        void DeleteItem(int id);
         void UpdateItem(Recipe item);
     }
 }
