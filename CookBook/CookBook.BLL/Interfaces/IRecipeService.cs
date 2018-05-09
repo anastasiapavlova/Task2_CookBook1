@@ -1,14 +1,17 @@
-﻿using CookBook.Domain.Models;
+﻿using CookBook.BLL.Models;
+using CookBook.Domain.Models;
+using System;
 using System.Collections.Generic;
 
 namespace CookBook.BLL.Interfaces
 {
     public interface IRecipeService
     {
-        List<Recipe> GetList();
-        void AddItem(Recipe item);
-        void AddItems(List<Recipe> items);
-        void DeleteItem(int id);
-        void UpdateItem(Recipe item);
+        List<RecipeModel> GetList();
+        RecipeModel GetItem(Guid id);
+        void AddItem(RecipeModel item);
+        void AddItems(List<RecipeModel> items);
+        void DeleteItem(Guid id);
+        void UpdateItem(RecipeModel item);
     }
 }

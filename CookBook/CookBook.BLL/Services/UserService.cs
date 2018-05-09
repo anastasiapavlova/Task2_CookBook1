@@ -1,42 +1,52 @@
-﻿using CookBook.BLL.Interfaces;
-using CookBook.DAL.Repositories;
+﻿using System;
+using System.Linq;
+using CookBook.BLL.Models;
 using CookBook.Domain.Models;
+using CookBook.BLL.Interfaces;
 using System.Collections.Generic;
+using CookBook.DAL.Interfaces;
 
 namespace CookBook.BLL.Services
 {
     public class UserService : IUserService
     {
-        private UserRepository repository;
+        private IUserRepository _userRepository;
 
-        public UserService()
+        public UserService(IUserRepository userRepository)
         {
-            repository = new UserRepository();
+            _userRepository = userRepository;
         }
 
-        public List<User> GetList()
+        public List<UserModel> GetList()
         {
-            return repository.GetList();
+            var resultList = _userRepository.GetList();
+
+            return resultList.Select(x => new UserModel
+            {
+                Id = x.Id,
+                Login = x.Login,
+                Type = (Enums.AccountTypes)x.Type
+            }).ToList();
         }
 
         public void AddItem(User item)
         {
-            repository.Add(item);
+            _userRepository.Add(item);
         }
 
         public void AddItems(List<User> items)
         {
-            repository.AddRange(items);
+            _userRepository.AddRange(items);
         }
 
-        public void DeleteItem(User item)
+        public void DeleteItem(Guid id)
         {
-            repository.Delete(item);
+            _userRepository.Delete(id);
         }
 
         public void UpdateItem(User item)
         {
-            repository.Update(item);
+            _userRepository.Update(item);
         }
     }
 }

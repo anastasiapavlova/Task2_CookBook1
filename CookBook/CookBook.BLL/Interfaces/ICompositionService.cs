@@ -1,14 +1,16 @@
-﻿using CookBook.Domain.Models;
+﻿using CookBook.BLL.Models;
+using CookBook.Domain.Models;
+using System;
 using System.Collections.Generic;
 
 namespace CookBook.BLL.Interfaces
 {
     public interface ICompositionService
     {
-        List<Composition> GetList();
-        void AddItem(Composition item);
+        List<CompositionModel> GetList();
+        void AddItem(CompositionModel item);
         void AddItems(List<Composition> items);
-        void DeleteItem(Composition item);
+        void DeleteItem(Guid id);
         void UpdateItem(Composition item);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CookBook.Domain.Models;
+using System;
 using System.Collections.Generic;
 
 namespace CookBook.DAL.Interfaces
@@ -8,7 +9,7 @@ namespace CookBook.DAL.Interfaces
         List<User> GetList();
         void AddRange(List<User> items);
         void Update(User item);
-        void Delete(User item);
+        void Delete(Guid id);
         void Add(User item);
     }
 }

@@ -1,56 +1,45 @@
-﻿using System;
-using CookBook.BLL.Logging;
-using CookBook.BLL.Services;
-using CookBook.Domain.Enums;
+﻿using CookBook.BLL.Logging;
 using CookBook.Domain.Models;
 
 namespace CookBook.BLL.Logic
 {
-    public static class DataUpdater
+    public  class DataUpdater
     {
-        public static void UpdateRecipe()
+        public static void UpdateRecipe(Recipe recipe)
         {
-            var recipe = new Recipe { Id = 2, Category = CategoryTypes.Breakfast, Name = "PastaNyam", UserId = 2 };
+            //var recipesService = new RecipeService();
 
-            var recipesService = new RecipeService();
+            //recipesService.UpdateItem(recipe);
 
-            recipesService.UpdateItem(recipe);
-
-            Logger.InitLogger();
-            Logger.Log.Info("Update recipe " + recipe.Name);
+            //Logger.InitLogger();
+            //Logger.Log.Info("Update recipe " + recipe.Name);
         }
 
-        public static void UpdateIngredient()
+        public static void UpdateIngredient(Ingredient ingredient)
         {
-            var ingredient = (new Ingredient{ Id = 3, Name = "Bread" });
+            //var ingredientsService = new IngredientService();
+            //ingredientsService.UpdateItem(ingredient);
 
-            var ingredientsService = new IngredientService();
-            ingredientsService.UpdateItem(ingredient);
-
-            Logger.InitLogger();
-            Logger.Log.Info("Update ingredient " + ingredient.Name);
+            //Logger.InitLogger();
+            //Logger.Log.Info("Update ingredient " + ingredient.Name);
         }
 
-        public static void UpdateReview()
+        public static void UpdateReview(Review review)
         {
-            var review = new Review {Id = 3, UserId = 3, Description = "Like it very much.", CreationDate = DateTime.Now, RecipeId = 3 };
+            //var reviewsService = new ReviewService();
+            //reviewsService.UpdateItem(review);
 
-            var reviewsService = new ReviewService();
-            reviewsService.UpdateItem(review);
-
-            Logger.InitLogger();
-            Logger.Log.Info("Update recipe " + review.Id);
+            //Logger.InitLogger();
+            //Logger.Log.Info("Update recipe " + review.Id);
         }
 
-        public static void UpdateUser()
+        public static void UpdateUser(User user)
         {
-            var user = new User { Id = 4, Login = "Meow14", Type = AccountTypes.User, Password = "miu" };
+            //var userService = new UserService();
+            //userService.UpdateItem(user);
 
-            var userService = new UserService();
-            userService.UpdateItem(user);
-
-            Logger.InitLogger();
-            Logger.Log.Info("Update user " + user.Id);
+            //Logger.InitLogger();
+            //Logger.Log.Info("Update user " + user.Id);
         }
     }
 }

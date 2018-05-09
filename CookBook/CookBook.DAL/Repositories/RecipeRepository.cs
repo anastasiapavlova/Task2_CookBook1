@@ -1,5 +1,6 @@
 ﻿using CookBook.DAL.Interfaces;
 using CookBook.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace CookBook.DAL.Repositories
             }
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             using (var context = new CookBookContext())
             {
@@ -35,6 +36,14 @@ namespace CookBook.DAL.Repositories
                     context.Recipes.Remove(context.Recipes.FirstOrDefault(x=>x.Id == id));
                     context.SaveChanges();
                 }
+            }
+        }
+
+        public Recipe GetItem(Guid id)
+        {
+            using (var context = new CookBookContext())
+            {
+                return context.Recipes.FirstOrDefault(x=>x.Id == id);
             }
         }
 

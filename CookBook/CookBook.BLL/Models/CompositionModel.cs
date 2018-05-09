@@ -1,10 +1,18 @@
-﻿namespace CookBook.BLL.Models
+﻿using System;
+
+namespace CookBook.BLL.Models
 {
     public class CompositionModel
     {
-        public int Id { get; set; }
-        public int RecipeId { get; set; }
-        public int IngredientId { get; set; }
+        public CompositionModel()
+        {
+            Id = Guid.NewGuid();
+        }
+
+        public Guid Id { get; set; }
+        public Guid RecipeId { get; set; }
+        public Guid IngredientId { get; set; }
+        public string IngredientName { get; set; }
         public int Quantity { get; set; }
     }
 }

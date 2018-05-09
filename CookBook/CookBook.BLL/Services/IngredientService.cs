@@ -1,42 +1,51 @@
 ﻿using CookBook.BLL.Interfaces;
-using CookBook.DAL.Repositories;
+using CookBook.BLL.Models;
+using CookBook.DAL.Interfaces;
 using CookBook.Domain.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CookBook.BLL.Services
 {
     public class IngredientService : IIngredientService
     {
-        private IngredientRepository repository;
+        private IIngredientRepository _ingredientRepository;
 
-        public IngredientService()
+        public IngredientService(IIngredientRepository ingredientRepository)
         {
-            repository = new IngredientRepository();
+            _ingredientRepository = ingredientRepository;
         }
 
-        public List<Ingredient> GetList()
+        public List<IngredientModel> GetList()
         {
-            return repository.GetList();
+            var resultList = _ingredientRepository.GetList();
+
+            return resultList.Select(x => new IngredientModel
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
         }
 
-        public void AddItem(Ingredient item)
+        public Guid AddItem(IngredientModel item)
         {
-            repository.Add(item);
+            return _ingredientRepository.Add(new Ingredient { Name = item.Name});
         }
 
         public void AddItems(List<Ingredient> items)
         {
-            repository.AddRange(items);
+            _ingredientRepository.AddRange(items);
         }
 
-        public void DeleteItem(Ingredient item)
+        public void DeleteItem(Guid id)
         {
-            repository.Delete(item);
+            _ingredientRepository.Delete(id);
         }
 
         public void UpdateItem(Ingredient item)
         {
-            repository.Update(item);
+            _ingredientRepository.Update(item);
         }
     }
 }

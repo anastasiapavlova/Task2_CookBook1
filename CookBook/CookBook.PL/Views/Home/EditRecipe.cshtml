@@ -1,8 +1,8 @@
-﻿@model IEnumerable<CookBook.BLL.Models.RecipeModel>
+﻿@model CookBook.BLL.Models.RecipeModel
 
 @{
     ViewBag.Title = "Index";
-    var grid = new WebGrid(source: Model,
+    var grid = new WebGrid(source: Model.Composition,
         defaultSort: "Name",
         rowsPerPage: 5);
     grid.Pager(WebGridPagerModes.All);
@@ -92,46 +92,64 @@
                     <div class="col-xl-9 col-lg-10 mx-auto">
                         <div class="bg-faded rounded p-5">
                             <h2 class="section-heading mb-4">
-                                <span class="section-heading-lower">Список рецептов</span>
+                                <span class="section-heading-lower">Редактирование рецепта</span>
                             </h2>
-                            <p>Вы можете добавлять рецепты, редактировать их и удалять созданные ранее.</p>
                             @grid.GetHtml(
-                                     tableStyle: "table table-bordered",
-                                     headerStyle: "webgrid-header",
-                                     footerStyle: "webgrid-footer",
-                                     alternatingRowStyle: "webgrid-alternating-row",
-                                     rowStyle: "webgrid-row-style",
-                                     columns: grid.Columns(
-                                         grid.Column(format: @<text><div>@(item.WebGrid.Rows.IndexOf(item) + 1)</div></text>),
-                         grid.Column(columnName: "Name", header: "Название", canSort: false),
-                         grid.Column(columnName: "Category", header: "Категория", canSort: false),
-                         grid.Column(header: "Редактировать", format: (item) =>
-                         {
-                             var link = Html.ActionLink("Редактировать", "EditRecipe", new { id = item.id });
-                             return link;
-                         }),
-                         grid.Column(header: "Удалить", format: (item) =>
-                         {
-                             var link = Html.ActionLink("Удалить", "DeleteRecipe", new { id = item.id });
-                             return link;
-                         })
-                         ))
+tableStyle: "table table-bordered",
+headerStyle: "webgrid-header",
+footerStyle: "webgrid-footer",
+alternatingRowStyle: "webgrid-alternating-row",
+rowStyle: "webgrid-row-style",
+columns: grid.Columns(
+grid.Column(format: @<text><div>@(item.WebGrid.Rows.IndexOf(item) + 1)</div></text>),
+grid.Column(columnName: "IngredientName", header: "Название", canSort: false),
+grid.Column(columnName: "Quantity", header: "Количество", canSort: false)))
 
-                         <h2 class="section-heading mb-4">
-                                <span class="section-heading-lower">Добавление рецепта</span>
-                         </h2>
-                        @using (Html.BeginForm("AddRecipe", "Home"))
-                         {
-                            <p>Введите название рецепта</p>      
-                            @Html.TextBox("Name", null, new { @class = "form-control" }) 
-                            <p>Выберите тип рецепта</p>
-                            @Html.DropDownList("Category", EnumHelper.GetSelectList(typeof(CookBook.BLL.Enums.CategoryTypes)) , new { @class = "form-control" })
-                            <p>Введите описание рецепта</p>
-                            @Html.TextArea("Description", null, new { @class = "form-control" })  
-                            <button class="navbar-toggler" type="button">
-                                Meow
-                            </button>
-                         }
+                            <h2 class="section-heading mb-4">
+                                <span class="section-heading-lower">Добавление ингредиента</span>
+                            </h2>
+                            @using (Html.BeginForm("AddExistComposition", "Home"))
+    {
+                        <div class="container">
+                            <div class="row">
+                                @Html.Hidden("RecipeId", Model.Id)
+                                <div class="col-3">
+                                    <p>Введите название ингредиента</p>
+                                    @Html.DropDownList("IngredientId", null, new { @class = "form-control" })
+                                </div>
+                                <div class="col-3">
+                                    <p>Введите количество</p>
+                                    @Html.TextBox("Quantity", null, new { @class = "form-control" })
+                                </div>
+                                <div class="col-3">
+                                    <button class="navbar-toggler" type="submit">
+                                        Добавить
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+}
+                            @using (Html.BeginForm("AddNewComposition", "Home"))
+    {
+                        <div class="container">
+                            <div class="row">
+                                @Html.Hidden("RecipeId", Model.Id)
+                                <div class="col-3">
+                                    <p>Введите название ингредиента</p>
+                                    @Html.TextBox("IngredientName", null, new { @class = "form-control" })
+                                </div>
+                                <div class="col-3">
+                                    <p>Введите количество</p>
+                                    @Html.TextBox("Quantity", null, new { @class = "form-control" })
+                                </div>
+                                <div class="col-3">
+                                    <button class="navbar-toggler" type="submit">
+                                        Добавить
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+}
                         </div>
                     </div>
                 </div>

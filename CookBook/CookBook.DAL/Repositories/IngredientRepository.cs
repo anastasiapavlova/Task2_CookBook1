@@ -1,5 +1,6 @@
 ﻿using CookBook.DAL.Interfaces;
 using CookBook.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -8,12 +9,13 @@ namespace CookBook.DAL.Repositories
 {
     public class IngredientRepository : IIngredientRepository
     {
-        public void Add(Ingredient item)
+        public Guid Add(Ingredient item)
         {
             using (var context = new CookBookContext())
             {
                 context.Ingredients.Add(item);
                 context.SaveChanges();
+                return item.Id;
             }
         }
 
@@ -26,14 +28,13 @@ namespace CookBook.DAL.Repositories
             }
         }
 
-        public void Delete(Ingredient item)
+        public void Delete(Guid id)
         {
             using (var context = new CookBookContext())
             {
-                if (item != null)
+                if (id != null)
                 {
-                    context.Ingredients.Attach(item);
-                    context.Ingredients.Remove(item);
+                    context.Ingredients.Remove(context.Ingredients.FirstOrDefault(x => x.Id == id));
                     context.SaveChanges();
                 }
             }

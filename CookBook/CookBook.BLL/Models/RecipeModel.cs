@@ -1,14 +1,17 @@
 ﻿using CookBook.BLL.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace CookBook.BLL.Models
 {
     public class RecipeModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public CategoryTypes Category { get; set; }
         public string Name { get; set; }
-        public int UserId { get; set; }
-        public List<IngredientModel> Ingredients { get; set; }
+        public Guid UserId { get; set; }
+        public List<CompositionModel> Composition { get; set; }
+        public List<ReviewModel> Review { get; set; }
+        public UserModel User { get; set; }
     }
 }
