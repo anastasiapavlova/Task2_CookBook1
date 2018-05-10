@@ -1,18 +1,18 @@
-﻿using CookBook.BLL.Interfaces;
-using CookBook.BLL.Mappers;
-using CookBook.BLL.Models;
-using CookBook.DAL.Interfaces;
-using CookBook.DAL.Repositories;
-using CookBook.Domain.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using CookBook.BLL.Models;
+using CookBook.BLL.Mappers;
+using CookBook.Domain.Models;
+using CookBook.BLL.Interfaces;
+using CookBook.DAL.Interfaces;
+using System.Collections.Generic;
+
 
 namespace CookBook.BLL.Services
 {
     public class CompositionService : ICompositionService
     {
-        private ICompositionRepository _compositionRepository;
+        private readonly ICompositionRepository _compositionRepository;
 
         public CompositionService(ICompositionRepository compositionRepository)
         {

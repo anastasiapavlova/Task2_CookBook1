@@ -114,7 +114,7 @@ p {
     position: relative
 }
 
-@media (min-width:992px) {
+@media (min-width:300px) {
     .intro .intro-img {
         width: 75%;
         float: right
@@ -123,15 +123,14 @@ p {
     .intro .intro-text {
         left: 0;
         width: 60%;
-        margin-top: 3rem;
+        margin-top: 50px;
         position: absolute
     }
 
         .intro .intro-text .intro-button {
-            width: 100%;
+            width: 25%;
             left: 0;
-            position: absolute;
-            bottom: -2rem
+            margin-top: 50px;
         }
 }
 
@@ -244,7 +243,8 @@ p {
 
 .btn-primary {
     background-color: #e6a756;
-    border-color: #e6a756
+    border-color: #e6a756;
+    margin: 10px;
 }
 
     .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
@@ -254,4 +254,77 @@ p {
 
 .font-weight-light {
     font-weight: 100 !important
+}
+
+button.cupid-green {
+    margin-top: 75px;
+}
+
+button.cupid-green {
+    background-color: #e6a756;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e6a756), color-stop(100%, #e6a756));
+    background-image: -webkit-linear-gradient(top, #e6a756, #e6a756);
+    background-image: -moz-linear-gradient(top, #e6a756, #e6a756);
+    background-image: -ms-linear-gradient(top, #e6a756, #e6a756);
+    background-image: -o-linear-gradient(top, #e6a756, #e6a756);
+    background-image: linear-gradient(top, #e6a756, #e6a756);
+    border: 1px solid #e6a756;
+    border-bottom: 1px solid #e6a756;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 0 0 #e6a756;
+    box-shadow: inset 0 1px 0 0 #e6a756;
+    color: #fff;
+    font: bold 12px/1 "helvetica neue", helvetica, arial, sans-serif;
+    padding: 7px 0 8px 0;
+    text-align: center;
+    text-shadow: 0 -1px 0 #e6a756;
+    width: 150px;
+}
+
+button.cupid-green-l {
+    margin-top: 30px;
+}
+
+button.cupid-green-l {
+    background-color: #e6a756;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e6a756), color-stop(100%, #e6a756));
+    background-image: -webkit-linear-gradient(top, #e6a756, #e6a756);
+    background-image: -moz-linear-gradient(top, #e6a756, #e6a756);
+    background-image: -ms-linear-gradient(top, #e6a756, #e6a756);
+    background-image: -o-linear-gradient(top, #e6a756, #e6a756);
+    background-image: linear-gradient(top, #e6a756, #e6a756);
+    border: 1px solid #e6a756;
+    border-bottom: 1px solid #e6a756;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 0 0 #e6a756;
+    box-shadow: inset 0 1px 0 0 #e6a756;
+    color: #fff;
+    font: bold 12px/1 "helvetica neue", helvetica, arial, sans-serif;
+    padding: 7px 0 8px 0;
+    text-align: center;
+    text-shadow: 0 -1px 0 #e6a756;
+    width: 150px;
+}
+
+.webgrid-table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    width: 100%;
+    display: table;
+    border-collapse: separate;
+    background-color: white;
+}
+
+.webgrid-header {
+    padding-bottom: 4px;
+    padding-top: 5px;
+    text-align: left;
+    color: #e6a756
+}
+
+.webgrid-columns {
+}
+
+.webgrid-row-style {
+    padding: 3px 7px 2px;
 }

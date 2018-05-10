@@ -1,16 +1,17 @@
-﻿using CookBook.BLL.Interfaces;
-using CookBook.BLL.Models;
-using CookBook.DAL.Interfaces;
-using CookBook.Domain.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using CookBook.BLL.Models;
+using CookBook.Domain.Models;
+using CookBook.BLL.Interfaces;
+using CookBook.DAL.Interfaces;
+using System.Collections.Generic;
+
 
 namespace CookBook.BLL.Services
 {
     public class IngredientService : IIngredientService
     {
-        private IIngredientRepository _ingredientRepository;
+        private readonly IIngredientRepository _ingredientRepository;
 
         public IngredientService(IIngredientRepository ingredientRepository)
         {

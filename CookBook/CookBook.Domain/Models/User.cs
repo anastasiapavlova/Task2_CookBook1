@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using CookBook.Domain.Enums;
+using System.Collections.Generic;
 
 namespace CookBook.Domain.Models
 {

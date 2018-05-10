@@ -1,6 +1,6 @@
-﻿using CookBook.DAL.Interfaces;
+﻿using Ninject.Modules;
+using CookBook.DAL.Interfaces;
 using CookBook.DAL.Repositories;
-using Ninject.Modules;
 
 namespace CookBook.DAL
 {

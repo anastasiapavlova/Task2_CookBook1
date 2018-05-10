@@ -1,7 +1,7 @@
-﻿using CookBook.BLL.Models;
+﻿using System.Linq;
+using CookBook.BLL.Models;
 using CookBook.Domain.Enums;
 using CookBook.Domain.Models;
-using System.Linq;
 
 namespace CookBook.BLL.Mappers
 {
@@ -11,12 +11,11 @@ namespace CookBook.BLL.Mappers
         {
             return new Recipe
             {
-                Id = recipeModel.Id,
                 Name = recipeModel.Name,
-                Composition = recipeModel.Composition.Select(CompositionMapper.ConvertCompositonModelToComposition).ToList(),
+                Composition = recipeModel.Composition?.Select(CompositionMapper.ConvertCompositonModelToComposition).ToList(),
                 Category = (CategoryTypes)recipeModel.Category,
-                Review = recipeModel.Review.Select(ReviewMapper.ConvertReviewModelToReview).ToList(),
-                User = UserMapper.ConvertUserModelToUser(recipeModel.User)
+                Review = recipeModel.Review?.Select(ReviewMapper.ConvertReviewModelToReview).ToList(),
+                UserId = recipeModel.User.Id
             };
         }
 

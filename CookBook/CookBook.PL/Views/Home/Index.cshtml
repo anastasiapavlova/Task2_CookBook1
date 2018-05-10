@@ -30,31 +30,6 @@
 
 </head>
 
-<style type="text/css">
-    .webgrid-table {
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-        font-size: 1.2em;
-        width: 100%;
-        display: table;
-        border-collapse: separate;
-        background-color: white;
-    }
-
-    .webgrid-header {
-        padding-bottom: 4px;
-        padding-top: 5px;
-        text-align: left;
-        color: #e6a756
-    }
-
-    .webgrid-columns {
-    }
-
-    .webgrid-row-style {
-        padding: 3px 7px 2px;
-    }
-</style>
-
 <body>
 
     <h1 class="site-heading text-center text-white d-none d-lg-block">
@@ -107,7 +82,7 @@
                          grid.Column(columnName: "Category", header: "Категория", canSort: false),
                          grid.Column(header: "Редактировать", format: (item) =>
                          {
-                             var link = Html.ActionLink("Редактировать", "EditRecipe", new { id = item.id });
+                             var link = Html.RouteLink("Редактировать", new { controller = "EditRecipe", action = "EditRecipe", id = item.id}, new { id = item.id });
                              return link;
                          }),
                          grid.Column(header: "Удалить", format: (item) =>
@@ -128,9 +103,9 @@
                             @Html.DropDownList("Category", EnumHelper.GetSelectList(typeof(CookBook.BLL.Enums.CategoryTypes)) , new { @class = "form-control" })
                             <p>Введите описание рецепта</p>
                             @Html.TextArea("Description", null, new { @class = "form-control" })  
-                            <button class="navbar-toggler" type="button">
-                                Meow
-                            </button>
+                             <div class="col-3">
+                                 <button class="cupid-green-l">Добавить</button>
+                             </div>
                          }
                         </div>
                     </div>

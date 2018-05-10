@@ -2,22 +2,19 @@
 using System.Linq;
 using CookBook.BLL.Models;
 using CookBook.BLL.Mappers;
-using CookBook.Domain.Models;
 using CookBook.BLL.Interfaces;
-using CookBook.DAL.Repositories;
-using System.Collections.Generic;
 using CookBook.DAL.Interfaces;
-using CookBook.Domain.Enums;
+using System.Collections.Generic;
 
 namespace CookBook.BLL.Services
 {
     public class RecipeService : IRecipeService
     {
-        private IRecipeRepository _recipeRepository;
-        private ICompositionRepository _compositionRepository;
-        private IReviewRepository _reviewRepository;
-        private IUserRepository _userRepository;
-        private IIngredientRepository _ingredientRepository;
+        private readonly IRecipeRepository _recipeRepository;
+        private readonly ICompositionRepository _compositionRepository;
+        private readonly IReviewRepository _reviewRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IIngredientRepository _ingredientRepository;
 
         public RecipeService(IRecipeRepository recipeRepository, ICompositionRepository compositionRepository,
             IReviewRepository reviewRepository, IUserRepository userRepository, IIngredientRepository ingredientRepository)

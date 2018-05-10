@@ -10,7 +10,6 @@ namespace CookBook.BLL.Mappers
         {
             return new Review
             {
-                Id = reviewModel.Id,
                 Description = reviewModel.Description,
                 UserId = reviewModel.UserId,
                 RecipeId = reviewModel.RecipeId,

@@ -3,15 +3,14 @@ using System.Linq;
 using CookBook.BLL.Models;
 using CookBook.Domain.Models;
 using CookBook.BLL.Interfaces;
-using CookBook.DAL.Repositories;
-using System.Collections.Generic;
 using CookBook.DAL.Interfaces;
+using System.Collections.Generic;
 
 namespace CookBook.BLL.Services
 {
     public class ReviewService : IReviewService
     {
-        private IReviewRepository _reviewRepository;
+        private readonly IReviewRepository _reviewRepository;
 
         public ReviewService(IReviewRepository reviewRepository)
         {

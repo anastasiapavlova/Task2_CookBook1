@@ -141,12 +141,12 @@
     <Content Include="Scripts\jquery.slim.min.js" />
     <Content Include="Source\background.jpg" />
     <Content Include="Web.config" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\ResolverConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\EditRecipeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -171,9 +171,8 @@
     <Content Include="Content\_store.scss" />
     <Content Include="Content\_variables.scss" />
     <None Include="packages.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\EditRecipe.cshtml" />
+    <Content Include="Views\EditRecipe\EditRecipe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

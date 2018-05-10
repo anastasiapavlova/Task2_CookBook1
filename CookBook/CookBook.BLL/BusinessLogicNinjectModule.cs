@@ -1,6 +1,6 @@
-﻿using CookBook.BLL.Interfaces;
+﻿using Ninject.Modules;
 using CookBook.BLL.Services;
-using Ninject.Modules;
+using CookBook.BLL.Interfaces;
 
 namespace CookBook.BLL
 {

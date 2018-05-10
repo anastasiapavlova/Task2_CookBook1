@@ -30,31 +30,6 @@
 
 </head>
 
-<style type="text/css">
-    .webgrid-table {
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-        font-size: 1.2em;
-        width: 100%;
-        display: table;
-        border-collapse: separate;
-        background-color: white;
-    }
-
-    .webgrid-header {
-        padding-bottom: 4px;
-        padding-top: 5px;
-        text-align: left;
-        color: #e6a756
-    }
-
-    .webgrid-columns {
-    }
-
-    .webgrid-row-style {
-        padding: 3px 7px 2px;
-    }
-</style>
-
 <body>
 
     <h1 class="site-heading text-center text-white d-none d-lg-block">
@@ -71,9 +46,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item active px-lg-4">
+                    @*<li class="nav-item active px-lg-4">
                         <a class="nav-link text-uppercase text-expanded" href="Index.cshtml">Список рецептов</a>
-                    </li>
+                    </li>*@
                     @*<li class="nav-item px-lg-4">
                             <a class="nav-link text-uppercase text-expanded" href="Registration.html">Регистрация/Авторизация</a>
                         </li>*@
@@ -95,20 +70,20 @@
                                 <span class="section-heading-lower">Редактирование рецепта</span>
                             </h2>
                             @grid.GetHtml(
-tableStyle: "table table-bordered",
-headerStyle: "webgrid-header",
-footerStyle: "webgrid-footer",
-alternatingRowStyle: "webgrid-alternating-row",
-rowStyle: "webgrid-row-style",
-columns: grid.Columns(
-grid.Column(format: @<text><div>@(item.WebGrid.Rows.IndexOf(item) + 1)</div></text>),
-grid.Column(columnName: "IngredientName", header: "Название", canSort: false),
-grid.Column(columnName: "Quantity", header: "Количество", canSort: false)))
+                                tableStyle: "table table-bordered",
+                                headerStyle: "webgrid-header",
+                                footerStyle: "webgrid-footer",
+                                alternatingRowStyle: "webgrid-alternating-row",
+                                rowStyle: "webgrid-row-style",
+                                columns: grid.Columns(
+                                grid.Column(format: @<text><div>@(item.WebGrid.Rows.IndexOf(item) + 1)</div></text>),
+                                grid.Column(columnName: "IngredientName", header: "Название", canSort: false),
+                                grid.Column(columnName: "Quantity", header: "Количество", canSort: false)))
 
                             <h2 class="section-heading mb-4">
                                 <span class="section-heading-lower">Добавление ингредиента</span>
                             </h2>
-                            @using (Html.BeginForm("AddExistComposition", "Home"))
+                            @using (Html.BeginForm("AddExistComposition", "EditRecipe"))
     {
                         <div class="container">
                             <div class="row">
@@ -122,14 +97,12 @@ grid.Column(columnName: "Quantity", header: "Количество", canSort: fal
                                     @Html.TextBox("Quantity", null, new { @class = "form-control" })
                                 </div>
                                 <div class="col-3">
-                                    <button class="navbar-toggler" type="submit">
-                                        Добавить
-                                    </button>
+                                    <button class="cupid-green">Добавить</button>
                                 </div>
                             </div>
                         </div>
 }
-                            @using (Html.BeginForm("AddNewComposition", "Home"))
+                            @using (Html.BeginForm("AddNewComposition", "EditRecipe"))
     {
                         <div class="container">
                             <div class="row">
@@ -143,9 +116,13 @@ grid.Column(columnName: "Quantity", header: "Количество", canSort: fal
                                     @Html.TextBox("Quantity", null, new { @class = "form-control" })
                                 </div>
                                 <div class="col-3">
-                                    <button class="navbar-toggler" type="submit">
+                                    @*<button class="navbar-toggler" type="submit">
                                         Добавить
-                                    </button>
+                                    </button>*@
+                                    @*<div class="intro-button mx-auto">
+                                        <a class="btn btn-primary btn-xl" href="#">Добавить</a>
+                                    </div>*@
+                                    <button class="cupid-green">Добавить</button>
                                 </div>
                             </div>
                         </div>

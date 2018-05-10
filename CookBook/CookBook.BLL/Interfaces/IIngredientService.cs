@@ -1,6 +1,6 @@
-﻿using CookBook.BLL.Models;
+﻿using System;
+using CookBook.BLL.Models;
 using CookBook.Domain.Models;
-using System;
 using System.Collections.Generic;
 
 namespace CookBook.BLL.Interfaces

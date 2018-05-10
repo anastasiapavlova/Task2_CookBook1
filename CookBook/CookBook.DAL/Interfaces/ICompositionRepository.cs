@@ -1,5 +1,5 @@
-﻿using CookBook.Domain.Models;
-using System;
+﻿using System;
+using CookBook.Domain.Models;
 using System.Collections.Generic;
 
 namespace CookBook.DAL.Interfaces
