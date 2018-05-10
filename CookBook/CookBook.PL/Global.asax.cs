@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
 using System.Web.Http;
+using System.Web.Routing;
 
 namespace CookBook.PL
 {
@@ -20,5 +16,6 @@ namespace CookBook.PL
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             App_Start.ResolverConfig.Configure();
         }
+        
     }
 }

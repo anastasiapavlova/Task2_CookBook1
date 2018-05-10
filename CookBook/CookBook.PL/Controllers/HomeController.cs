@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using CookBook.BLL.Models;
+using CookBook.BLL.Logging;
 using CookBook.BLL.Interfaces;
 
 namespace CookBook.PL.Controllers
@@ -17,22 +18,57 @@ namespace CookBook.PL.Controllers
             _userService = userService;
         }
 
+        [HandleError(View = "Error")]
         public ActionResult Index()
         {
-            return View(_recipeService.GetList());
+            try
+            {
+                return View("Index", _recipeService.GetList());
+            }
+            catch (Exception e)
+            {
+                Logger.InitLogger();
+                Logger.Log.Error("Error: " + e);
+                return View("Error");
+            }
         }
 
+        public ActionResult ErrorAc()
+        {
+            return View("Error");
+        }
+
+        [HandleError(View = "Error")]
         public ActionResult AddRecipe(RecipeModel recipe)
         {
-            recipe.User = _userService.GetList().FirstOrDefault();
-            _recipeService.AddItem(recipe);
-            return RedirectToAction("Index");
+            try
+            {
+                recipe.User = _userService.GetList().FirstOrDefault();
+                _recipeService.AddItem(recipe);
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                Logger.InitLogger();
+                Logger.Log.Error("Error: " + e);
+                return View("Error");
+            }
         }
 
+        [HandleError(View = "Error")]
         public ActionResult DeleteRecipe(Guid id)
         {
-            _recipeService.DeleteItem(id);
-            return RedirectToAction("Index");
+            try
+            {
+                _recipeService.DeleteItem(id);
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                Logger.InitLogger();
+                Logger.Log.Error("Error: " + e);
+                return View("Error");
+            }
         }
     }
 }
