@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "AddRecipe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="section-heading mb-4">
+    <span class="section-heading-lower">Добавление рецепта</span>
+</h2>
+@using (Html.BeginForm("AddRecipe", "Recipe"))
+{
+    <p>Введите название рецепта</p>
+    @Html.TextBox("Name", null, new { @class = "form-control" })
+    <p>Выберите тип рецепта</p>
+    @Html.DropDownList("Category", EnumHelper.GetSelectList(typeof(CookBook.BLL.Enums.CategoryTypes)), new { @class = "form-control" })
+    <p>Введите описание рецепта</p>
+    @Html.TextArea("Description", null, new { @class = "form-control" })
+    <div class="col-3">
+        <button class="cupid-green-l">Добавить</button>
+    </div>
+}

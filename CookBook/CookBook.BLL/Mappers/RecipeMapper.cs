@@ -28,7 +28,7 @@ namespace CookBook.BLL.Mappers
                 Composition = recipe.Composition?.Select(CompositionMapper.ConvertCompositonToCompositionModel).ToList(),
                 Category = (Enums.CategoryTypes)recipe.Category,
                 Review = recipe.Review?.Select(ReviewMapper.ConvertReviewToReviewModel).ToList(),
-                User = UserMapper.ConvertUserToUserModel(recipe.User)
+                UserId = recipe.UserId
             };
         }
     }

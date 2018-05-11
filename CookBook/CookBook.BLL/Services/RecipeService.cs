@@ -1,4 +1,5 @@
 ﻿using System;
+using Ninject;
 using System.Linq;
 using CookBook.BLL.Models;
 using CookBook.BLL.Mappers;
@@ -10,69 +11,56 @@ namespace CookBook.BLL.Services
 {
     public class RecipeService : IRecipeService
     {
-        private readonly IRecipeRepository _recipeRepository;
-        private readonly ICompositionRepository _compositionRepository;
-        private readonly IReviewRepository _reviewRepository;
-        private readonly IUserRepository _userRepository;
-        private readonly IIngredientRepository _ingredientRepository;
-
-        public RecipeService(IRecipeRepository recipeRepository, ICompositionRepository compositionRepository,
-            IReviewRepository reviewRepository, IUserRepository userRepository, IIngredientRepository ingredientRepository)
-        {
-            _recipeRepository = recipeRepository;
-            _compositionRepository = compositionRepository;
-            _reviewRepository = reviewRepository;
-            _userRepository = userRepository;
-            _ingredientRepository = ingredientRepository;
-        }
-
+        [Inject]
+        public IRecipeRepository RecipeRepository { get; set; }
+        [Inject]
+        public ICompositionRepository CompositionRepository { get; set; }
+        [Inject]
+        public IReviewRepository ReviewRepository { get; set; }
+        [Inject]
+        public IUserRepository UserRepository { get; set; }
+        [Inject]
+        public IIngredientRepository IngredientRepository { get; set; }
+        
         public List<RecipeModel> GetList()
         {
-            var resultList = _recipeRepository.GetList();
+            var resultList = RecipeRepository.GetList();
 
-            return resultList.Select(x => new RecipeModel
-            {
-                Id = x.Id,
-                Category = (Enums.CategoryTypes)x.Category,
-                Name = x.Name,
-                Composition = _compositionRepository.GetList().Where(y => y.RecipeId == x.Id).Select(CompositionMapper.ConvertCompositonToCompositionModel).ToList(),
-                Review = _reviewRepository.GetList().Where(y => y.Id == x.Id).Select(ReviewMapper.ConvertReviewToReviewModel).ToList(),
-                User = UserMapper.ConvertUserToUserModel(_userRepository.GetList().FirstOrDefault())
-            }).ToList();
+            return resultList.Select(RecipeMapper.ConvertRecipeToRecipeModel).ToList();
         }
 
         public void AddItem(RecipeModel item)
         {
-            _recipeRepository.Add(RecipeMapper.ConvertRecipeModelToRecipe(item));
+            RecipeRepository.Add(RecipeMapper.ConvertRecipeModelToRecipe(item));
         }
 
         public void AddItems(List<RecipeModel> items)
         {
-            _recipeRepository.AddRange(items.Select(RecipeMapper.ConvertRecipeModelToRecipe).ToList());
+            RecipeRepository.AddRange(items.Select(RecipeMapper.ConvertRecipeModelToRecipe).ToList());
         }
 
         public void DeleteItem(Guid id)
         {
 
-            var compositions = _compositionRepository.GetList().Where(x => x.RecipeId == id).ToList();
-            compositions.ForEach(x => _compositionRepository.Delete(x.Id));
+            var compositions = CompositionRepository.GetList().Where(x => x.RecipeId == id).ToList();
+            compositions.ForEach(x => CompositionRepository.Delete(x.Id));
 
-            var reviews = _reviewRepository.GetList().Where(x => x.RecipeId == id).ToList();
-            reviews.ForEach(x => _reviewRepository.Delete(x.Id));
+            var reviews = ReviewRepository.GetList().Where(x => x.RecipeId == id).ToList();
+            reviews.ForEach(x => ReviewRepository.Delete(x.Id));
 
-            _recipeRepository.Delete(id);
+            RecipeRepository.Delete(id);
         }
 
         public void UpdateItem(RecipeModel item)
         {
-            _recipeRepository.Update(RecipeMapper.ConvertRecipeModelToRecipe(item));
+            RecipeRepository.Update(RecipeMapper.ConvertRecipeModelToRecipe(item));
         }
 
         public RecipeModel GetItem(Guid id)
         {
-            var temp = _recipeRepository.GetItem(id);
-            var tempIngr = _ingredientRepository.GetList();
-            var tempComp = _compositionRepository.GetList().Where(y => y.RecipeId == temp.Id).Select(CompositionMapper.ConvertCompositonToCompositionModel).ToList();
+            var temp = RecipeRepository.GetItem(id);
+            var tempIngr = IngredientRepository.GetList();
+            var tempComp = CompositionRepository.GetList().Where(y => y.RecipeId == temp.Id).Select(CompositionMapper.ConvertCompositonToCompositionModel).ToList();
             tempComp.ForEach(y => y.IngredientName = tempIngr.Where(z => z.Id == y.IngredientId).FirstOrDefault()?.Name);
 
             return new RecipeModel
@@ -81,8 +69,8 @@ namespace CookBook.BLL.Services
                 Category = (Enums.CategoryTypes)temp.Category,
                 Name = temp.Name,
                 Composition = tempComp,
-                Review = _reviewRepository.GetList().Where(y => y.Id == temp.Id).Select(ReviewMapper.ConvertReviewToReviewModel).ToList(),
-                User = UserMapper.ConvertUserToUserModel(_userRepository.GetList().FirstOrDefault())
+                Review = ReviewRepository.GetList().Where(y => y.Id == temp.Id).Select(ReviewMapper.ConvertReviewToReviewModel).ToList(),
+                User = UserMapper.ConvertUserToUserModel(UserRepository.GetList().FirstOrDefault())
             };
         }
     }

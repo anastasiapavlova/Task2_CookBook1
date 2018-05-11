@@ -1,4 +1,5 @@
 ﻿using System;
+using Ninject;
 using System.Linq;
 using CookBook.BLL.Models;
 using CookBook.BLL.Mappers;
@@ -7,49 +8,38 @@ using CookBook.BLL.Interfaces;
 using CookBook.DAL.Interfaces;
 using System.Collections.Generic;
 
-
 namespace CookBook.BLL.Services
 {
     public class CompositionService : ICompositionService
     {
-        private readonly ICompositionRepository _compositionRepository;
-
-        public CompositionService(ICompositionRepository compositionRepository)
-        {
-            _compositionRepository = compositionRepository;
-        }
+        [Inject]
+        public ICompositionRepository CompositionRepository { get; set; }
 
         public List<CompositionModel> GetList()
         {
-            var resultList = _compositionRepository.GetList();
+            var resultList = CompositionRepository.GetList();
 
-            return resultList.Select(x => new CompositionModel
-            {
-                Id = x.Id,
-                RecipeId = x.RecipeId,
-                IngredientId = x.Id,
-                Quantity = x.Quantity
-            }).ToList();
+            return resultList.Select(CompositionMapper.ConvertCompositonToCompositionModel).ToList();
         }
 
         public void AddItem(CompositionModel item)
         {
-            _compositionRepository.Add(CompositionMapper.ConvertCompositonModelToComposition(item));
+            CompositionRepository.Add(CompositionMapper.ConvertCompositonModelToComposition(item));
         }
 
         public void AddItems(List<Composition> items)
         {
-            _compositionRepository.AddRange(items);
+            CompositionRepository.AddRange(items);
         }
 
         public void DeleteItem(Guid id)
         {
-            _compositionRepository.Delete(id);
+            CompositionRepository.Delete(id);
         }
 
         public void UpdateItem(Composition item)
         {
-            _compositionRepository.Update(item);
+            CompositionRepository.Update(item);
         }
     }
 }

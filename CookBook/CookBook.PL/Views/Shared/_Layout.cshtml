@@ -1,10 +1,4 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
-
-@{
-    ViewBag.Title = "Error";
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -12,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>ErrorView</title>
+    <title>CookBook</title>
     <link href="../../Content/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
@@ -35,15 +29,18 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mx-auto">
-                    @*<li class="nav-item active px-lg-4">
-                        <a class="nav-link text-uppercase text-expanded" href="../Home/Index.cshtml">Список рецептов</a>
-                    </li>*@
-                    @*<li class="nav-item px-lg-4">
-                            <a class="nav-link text-uppercase text-expanded" href="Registration.html">Регистрация/Авторизация</a>
-                        </li>*@
-                    @*<li class="nav-item px-lg-4">
-                            <a class="nav-link text-uppercase text-expanded" href="Admin.html">Админская</a>
-                        </li>*@
+                    <li class="nav-item active px-lg-4">
+                        <a class="nav-link text-uppercase" href="../Home/">Главная</a>
+                    </li>
+                    <li class="nav-item active px-lg-4">
+                        <a class="nav-link text-uppercase" href="@Url.Action("ViewRecipeList", "Recipe")">Список рецептов</a>
+                    </li>
+                    <li class="nav-item active px-lg-4">
+                        <a class="nav-link text-uppercase" href="@Url.Action("AddRecipe", "Recipe")">Добавить рецепт</a>
+                    </li>
+                    <li class="nav-item active px-lg-4">
+                        <a class="nav-link text-uppercase" href="@Url.Action("AddRecipe", "Recipe")">Добавить рецепт</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -55,11 +52,7 @@
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
                         <div class="bg-faded rounded p-5">
-                            <h2 class="section-heading mb-4">
-                                <span class="section-heading-lower">Произошла ошибка!</span>
-                            </h2>
-                            <h2 class="text-danger">An error occurred while processing your request.</h2>
-                            @*@Html.ActionLink("Back", @Model.ActionName, @Model.ControllerName)*@
+                            @RenderBody()
                         </div>
                     </div>
                 </div>

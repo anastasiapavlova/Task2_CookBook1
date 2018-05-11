@@ -1,14 +1,8 @@
 ﻿using System;
-
-namespace CookBook.BLL.Models
+namespace CookBook.Pl.Models
 {
-    public class CompositionModel
+    public class CompositionViewModel
     {
-        public CompositionModel()
-        {
-            Id = Guid.NewGuid();
-        }
-
         public Guid Id { get; set; }
         public Guid RecipeId { get; set; }
         public Guid IngredientId { get; set; }

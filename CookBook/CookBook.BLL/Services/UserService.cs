@@ -1,52 +1,45 @@
 ﻿using System;
+using Ninject;
 using System.Linq;
 using CookBook.BLL.Models;
+using CookBook.BLL.Mappers;
 using CookBook.Domain.Models;
 using CookBook.BLL.Interfaces;
-using System.Collections.Generic;
 using CookBook.DAL.Interfaces;
+using System.Collections.Generic;
 
 namespace CookBook.BLL.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository _userRepository;
-
-        public UserService(IUserRepository userRepository)
-        {
-            _userRepository = userRepository;
-        }
+        [Inject]
+        public IUserRepository UserRepository { get; set; }
 
         public List<UserModel> GetList()
         {
-            var resultList = _userRepository.GetList();
+            var resultList = UserRepository.GetList();
 
-            return resultList.Select(x => new UserModel
-            {
-                Id = x.Id,
-                Login = x.Login,
-                Type = (Enums.AccountTypes)x.Type
-            }).ToList();
+            return resultList.Select(UserMapper.ConvertUserToUserModel).ToList();
         }
 
         public void AddItem(User item)
         {
-            _userRepository.Add(item);
+            UserRepository.Add(item);
         }
 
         public void AddItems(List<User> items)
         {
-            _userRepository.AddRange(items);
+            UserRepository.AddRange(items);
         }
 
         public void DeleteItem(Guid id)
         {
-            _userRepository.Delete(id);
+            UserRepository.Delete(id);
         }
 
         public void UpdateItem(User item)
         {
-            _userRepository.Update(item);
+            UserRepository.Update(item);
         }
     }
 }

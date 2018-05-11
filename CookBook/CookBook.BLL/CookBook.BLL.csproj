@@ -95,6 +95,7 @@
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Mappers\CompositionMapper.cs" />
+    <Compile Include="Mappers\IngredientMapper.cs" />
     <Compile Include="Mappers\RecipeMapper.cs" />
     <Compile Include="Mappers\ReviewMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />

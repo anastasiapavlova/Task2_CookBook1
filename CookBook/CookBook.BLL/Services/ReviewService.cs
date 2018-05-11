@@ -1,6 +1,8 @@
 ﻿using System;
+using Ninject;
 using System.Linq;
 using CookBook.BLL.Models;
+using CookBook.BLL.Mappers;
 using CookBook.Domain.Models;
 using CookBook.BLL.Interfaces;
 using CookBook.DAL.Interfaces;
@@ -10,45 +12,34 @@ namespace CookBook.BLL.Services
 {
     public class ReviewService : IReviewService
     {
-        private readonly IReviewRepository _reviewRepository;
-
-        public ReviewService(IReviewRepository reviewRepository)
-        {
-            _reviewRepository = reviewRepository;
-        }
-
+        [Inject]
+        public IReviewRepository ReviewRepository { get; set; }
+        
         public List<ReviewModel> GetList()
         {
-            var resultList = _reviewRepository.GetList();
+            var resultList = ReviewRepository.GetList();
 
-            return resultList.Select(x => new ReviewModel
-            {
-                Id = x.Id,
-                UserId = x.UserId,
-                RecipeId = x.RecipeId,
-                Description = x.Description,
-                CreationDate = x.CreationDate
-            }).ToList();
+            return resultList.Select(ReviewMapper.ConvertReviewToReviewModel).ToList();
         }
 
         public void AddItem(Review item)
         {
-            _reviewRepository.Add(item);
+            ReviewRepository.Add(item);
         }
 
         public void AddItems(List<Review> items)
         {
-            _reviewRepository.AddRange(items);
+            ReviewRepository.AddRange(items);
         }
 
         public void DeleteItem(Guid id)
         {
-            _reviewRepository.Delete(id);
+            ReviewRepository.Delete(id);
         }
 
         public void UpdateItem(Review item)
         {
-            _reviewRepository.Update(item);
+            ReviewRepository.Update(item);
         }
     }
 }

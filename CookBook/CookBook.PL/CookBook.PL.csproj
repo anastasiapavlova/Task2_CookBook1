@@ -145,12 +145,21 @@
   <ItemGroup>
     <Compile Include="App_Start\ResolverConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\EditRecipeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mappers\CompositionViewMapper.cs" />
+    <Compile Include="Mappers\IngredientViewMapper.cs" />
+    <Compile Include="Mappers\RecipeViewMapper.cs" />
+    <Compile Include="Mappers\ReviewViewMapper.cs" />
+    <Compile Include="Mappers\UserViewMapper.cs" />
+    <Compile Include="Models\CompositionViewModel.cs" />
+    <Compile Include="Models\IngredientViewModel.cs" />
+    <Compile Include="Models\RecipeViewModel.cs" />
+    <Compile Include="Models\ReviewViewModel.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -172,12 +181,15 @@
     <Content Include="Content\_variables.scss" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\EditRecipe\EditRecipe.cshtml" />
+    <Content Include="Views\Recipe\EditRecipe.cshtml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile2.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Error.cshtml" />
+    <Content Include="Views\Recipe\AddRecipe.cshtml" />
+    <Content Include="Views\Recipe\ViewRecipeList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -187,7 +199,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\AddRecipe\" />
+    <Folder Include="Views\EditRecipe\" />
+    <Folder Include="Views\ViewRecipeList\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CookBook.BLL\CookBook.BLL.csproj">
