@@ -1,0 +1,43 @@
+﻿@model CookBook.PL.Models.RecipeViewModel
+
+<h2 class="section-heading mb-4">
+    <span class="section-heading-lower">Добавление ингредиента</span>
+</h2>
+@using (Html.BeginForm("AddExistComposition", "Recipe"))
+{
+    <div class="container">
+        <div class="row">
+            @Html.Hidden("RecipeId", Model.Id)
+            <div class="col-3">
+                <p>Введите название ингредиента</p>
+                @Html.DropDownList("IngredientId", null, new { @class = "form-control" })
+            </div>
+            <div class="col-3">
+                <p>Введите количество</p>
+                @Html.TextBox("Quantity", null, new { @class = "form-control" })
+            </div>
+            <div class="col-3">
+                <button class="cupid-green">Добавить</button>
+            </div>
+        </div>
+    </div>
+}
+@using (Html.BeginForm("AddNewComposition", "Recipe"))
+{
+    <div class="container">
+        <div class="row">
+            @Html.Hidden("RecipeId", Model.Id)
+            <div class="col-3">
+                <p>Введите название ингредиента</p>
+                @Html.TextBox("IngredientName", null, new { @class = "form-control" })
+            </div>
+            <div class="col-3">
+                <p>Введите количество</p>
+                @Html.TextBox("Quantity", null, new { @class = "form-control" })
+            </div>
+            <div class="col-3">
+                <button class="cupid-green">Добавить</button>
+            </div>
+        </div>
+    </div>
+}

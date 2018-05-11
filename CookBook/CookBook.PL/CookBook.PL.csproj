@@ -190,6 +190,7 @@
     <Content Include="Views\Shared\_Error.cshtml" />
     <Content Include="Views\Recipe\AddRecipe.cshtml" />
     <Content Include="Views\Recipe\ViewRecipeList.cshtml" />
+    <Content Include="Views\Recipe\AddComposition.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -199,9 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AddRecipe\" />
-    <Folder Include="Views\EditRecipe\" />
-    <Folder Include="Views\ViewRecipeList\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CookBook.BLL\CookBook.BLL.csproj">
