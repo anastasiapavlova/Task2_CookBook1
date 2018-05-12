@@ -1,4 +1,4 @@
-﻿@model CookBook.PL.Models.RecipeViewModel
+﻿@model CookBook.PL.Models.CompositionViewModel
 
 <h2 class="section-heading mb-4">
     <span class="section-heading-lower">Добавление ингредиента</span>
@@ -7,14 +7,16 @@
 {
     <div class="container">
         <div class="row">
-            @Html.Hidden("RecipeId", Model.Id)
+            @Html.HiddenFor(model => model.RecipeId)
             <div class="col-3">
                 <p>Введите название ингредиента</p>
-                @Html.DropDownList("IngredientId", null, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.IngredientId,null, new { @class = "form-control" })
             </div>
+            
             <div class="col-3">
                 <p>Введите количество</p>
-                @Html.TextBox("Quantity", null, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Quantity, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Quantity)
             </div>
             <div class="col-3">
                 <button class="cupid-green">Добавить</button>
@@ -26,14 +28,16 @@
 {
     <div class="container">
         <div class="row">
-            @Html.Hidden("RecipeId", Model.Id)
+            @Html.HiddenFor(model => model.RecipeId)
             <div class="col-3">
                 <p>Введите название ингредиента</p>
-                @Html.TextBox("IngredientName", null, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.IngredientName, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IngredientName)
             </div>
             <div class="col-3">
                 <p>Введите количество</p>
-                @Html.TextBox("Quantity", null, new { @class = "form-control" })
+                @Html.TextBoxFor(x=>x.Quantity, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Quantity)
             </div>
             <div class="col-3">
                 <button class="cupid-green">Добавить</button>

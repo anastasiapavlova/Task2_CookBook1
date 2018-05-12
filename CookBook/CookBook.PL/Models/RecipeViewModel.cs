@@ -1,7 +1,7 @@
 ﻿using System;
 using CookBook.BLL.Enums;
-using CookBook.Pl.Models;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CookBook.PL.Models
 {
@@ -9,6 +9,8 @@ namespace CookBook.PL.Models
     {
         public Guid Id { get; set; }
         public CategoryTypes Category { get; set; }
+
+        [Required(ErrorMessage = "Поле название рецепта должно быть установлено")]
         public string Name { get; set; }
         public Guid UserId { get; set; }
         public List<CompositionViewModel> Composition { get; set; }

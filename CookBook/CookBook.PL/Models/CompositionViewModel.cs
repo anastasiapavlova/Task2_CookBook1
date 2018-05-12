@@ -1,12 +1,11 @@
 ﻿using System;
-namespace CookBook.Pl.Models
+using System.ComponentModel.DataAnnotations;
+
+namespace CookBook.PL.Models
 {
-    public class CompositionViewModel
+    public class CompositionViewModel: CompositionBaseViewModel
     {
-        public Guid Id { get; set; }
-        public Guid RecipeId { get; set; }
-        public Guid IngredientId { get; set; }
-        public int Quantity { get; set; }
+        [Required(ErrorMessage ="Необходимо заполнить поле название ингредиента")]
         public string IngredientName { get; set; }
     }
 }

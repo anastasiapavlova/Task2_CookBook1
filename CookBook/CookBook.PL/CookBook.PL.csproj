@@ -135,10 +135,22 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.slim.js" />
     <Content Include="Scripts\jquery.slim.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Source\background.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -155,6 +167,7 @@
     <Compile Include="Mappers\RecipeViewMapper.cs" />
     <Compile Include="Mappers\ReviewViewMapper.cs" />
     <Compile Include="Mappers\UserViewMapper.cs" />
+    <Compile Include="Models\CompositionBaseViewModel.cs" />
     <Compile Include="Models\CompositionViewModel.cs" />
     <Compile Include="Models\IngredientViewModel.cs" />
     <Compile Include="Models\RecipeViewModel.cs" />

@@ -2,7 +2,6 @@
 using Ninject;
 using System.Linq;
 using System.Web.Mvc;
-using CookBook.Pl.Models;
 using CookBook.PL.Models;
 using CookBook.BLL.Models;
 using CookBook.PL.Mappers;
@@ -65,9 +64,13 @@ namespace CookBook.PL.Controllers
         {
             try
             {
-                recipe.User = UserViewMapper.ConvertUserModelToUserViewModel(UserService.GetList().FirstOrDefault());
-                RecipeService.AddItem(RecipeViewMapper.ConvertRecipeViewModelToRecipeModel(recipe));
-                return RedirectToAction("ViewRecipeList");
+                if (ModelState.IsValid)
+                {
+                    recipe.User = UserViewMapper.ConvertUserModelToUserViewModel(UserService.GetList().FirstOrDefault());
+                    RecipeService.AddItem(RecipeViewMapper.ConvertRecipeViewModelToRecipeModel(recipe));
+                    return RedirectToAction("ViewRecipeList");
+                }
+                return View("AddRecipe");
             }
             catch (Exception e)
             {
@@ -99,8 +102,8 @@ namespace CookBook.PL.Controllers
         {
             try
             {
-                var modelRecipe = RecipeViewMapper.ConvertRecipeModelToRecipeViewModel(RecipeService.GetItem(id));
                 ViewBag.IngredientId = new SelectList(IngredientService.GetList().Select(IngredientViewMapper.ConvertIngredientModelToIngredientViewModel).ToList(), "Id", "Name");
+                var modelRecipe = RecipeViewMapper.ConvertRecipeModelToRecipeViewModel(RecipeService.GetItem(id));
                 return View("EditRecipe", modelRecipe);
             }
             catch (Exception e)
@@ -110,13 +113,17 @@ namespace CookBook.PL.Controllers
                 return View("_Error");
             }
         }
-        
+
         [HandleError(View = "_Error")]
-        public ActionResult AddExistComposition(CompositionViewModel model)
+        public ActionResult AddExistComposition(CompositionBaseViewModel model)
         {
             try
             {
-                CompositionService.AddItem(CompositionViewMapper.ConvertCompositonViewModelToCompositionModel(model));
+                if (ModelState.IsValid)
+                {
+                    CompositionService.AddItem(CompositionViewMapper.ConvertCompositonViewModelToCompositionModel(model));
+                    return RedirectToAction("EditRecipe", new { id = model.RecipeId });
+                }
                 return RedirectToAction("EditRecipe", new { id = model.RecipeId });
             }
             catch (Exception e)
@@ -132,8 +139,12 @@ namespace CookBook.PL.Controllers
         {
             try
             {
-                model.IngredientId = IngredientService.AddItem(new IngredientModel {Name = model.IngredientName});
-                CompositionService.AddItem(CompositionViewMapper.ConvertCompositonViewModelToCompositionModel(model));
+                if (ModelState.IsValid)
+                {
+                    model.IngredientId = IngredientService.AddItem(new IngredientModel { Name = model.IngredientName });
+                    CompositionService.AddItem(CompositionViewMapper.ConvertCompositonViewModelToCompositionModel(model));
+                    return RedirectToAction("EditRecipe", new { id = model.RecipeId });
+                }
                 return RedirectToAction("EditRecipe", new { id = model.RecipeId });
             }
             catch (Exception e)

@@ -1,11 +1,11 @@
-﻿using CookBook.Pl.Models;
+﻿using CookBook.PL.Models;
 using CookBook.BLL.Models;
 
 namespace CookBook.PL.Mappers
 {
     internal class CompositionViewMapper
     {
-        internal static CompositionModel ConvertCompositonViewModelToCompositionModel(CompositionViewModel compositionModel)
+        internal static CompositionModel ConvertCompositonViewModelToCompositionModel(CompositionBaseViewModel compositionModel)
         {
             return new CompositionModel
             {

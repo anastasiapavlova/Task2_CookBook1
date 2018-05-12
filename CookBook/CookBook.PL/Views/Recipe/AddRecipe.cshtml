@@ -8,6 +8,7 @@
 </h2>
 @using (Html.BeginForm("AddRecipe", "Recipe"))
 {
+    @Html.ValidationSummary()
     <p>Введите название рецепта</p>
     @Html.TextBox("Name", null, new { @class = "form-control" })
     <p>Выберите тип рецепта</p>

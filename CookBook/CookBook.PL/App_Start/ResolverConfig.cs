@@ -13,6 +13,7 @@ namespace CookBook.PL.App_Start
         {
             var container = new StandardKernel(new BusinessLogicNinjectModule(), new DataAccessNinjectModule());
             container.Load(Assembly.GetExecutingAssembly());
+            container.Unbind<ModelValidatorProvider>();
             DependencyResolver.SetResolver(new NinjectDependencyResolver(container));
         }
     }

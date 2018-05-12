@@ -3,7 +3,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Index";
-    var grid = new WebGrid(source: Model.Composition,
+    var grid = new WebGrid(source: Model.Composition ?? null,
         defaultSort: "Name",
         rowsPerPage: 5);
     grid.Pager(WebGridPagerModes.All);
@@ -13,15 +13,17 @@
 <h2 class="section-heading mb-4">
     <span class="section-heading-lower">Редактирование рецепта</span>
 </h2>
-@grid.GetHtml(
-         tableStyle: "table table-bordered",
-         headerStyle: "webgrid-header",
-         footerStyle: "webgrid-footer",
-         alternatingRowStyle: "webgrid-alternating-row",
-         rowStyle: "webgrid-row-style",
-         columns: grid.Columns(
-         grid.Column(format: @<text><div>@(item.WebGrid.Rows.IndexOf(item) + 1)</div></text>),
-grid.Column(columnName: "IngredientName", header: "Название", canSort: false),
-grid.Column(columnName: "Quantity", header: "Количество", canSort: false)))
+<div>
+    @grid.GetHtml(
+             tableStyle: "table table-bordered",
+             headerStyle: "webgrid-header",
+             footerStyle: "webgrid-footer",
+             alternatingRowStyle: "webgrid-alternating-row",
+             rowStyle: "webgrid-row-style",
+             columns: grid.Columns(
+             grid.Column(format: @<text><div>@(item.WebGrid.Rows.IndexOf(item) + 1)</div></text>),
+                  grid.Column(columnName: "IngredientName", header: "Название", canSort: false),
+                  grid.Column(columnName: "Quantity", header: "Количество", canSort: false)))
+</div>
 
-@Html.Partial("AddComposition") 
+@Html.Partial("AddComposition", new CookBook.PL.Models.CompositionViewModel { RecipeId = Model.Id})
