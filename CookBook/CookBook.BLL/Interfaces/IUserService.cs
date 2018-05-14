@@ -1,6 +1,5 @@
 ﻿using System;
 using CookBook.BLL.Models;
-using CookBook.Domain.Models;
 using System.Collections.Generic;
 
 namespace CookBook.BLL.Interfaces
@@ -8,9 +7,9 @@ namespace CookBook.BLL.Interfaces
     public interface IUserService
     {
         List<UserModel> GetList();
-        void AddItem(User item);
-        void AddItems(List<User> items);
+        void AddItem(UserModel item);
+        void AddItems(List<UserModel> items);
         void DeleteItem(Guid id);
-        void UpdateItem(User item);
+        void UpdateItem(UserModel item);
     }
 }

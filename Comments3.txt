@@ -1,0 +1,23 @@
+- давай на англ все будет (т.е. никакого рус текста по коду)
+- подумаю может можно вынести в константы тест с вьюшек
+например  <span class="site-heading-upper text-primary mb-3">электронная</span>
+<span class="site-heading-lower">кулинарная книга</span>
+- по поводу названий вьюшек 
+внутри папки можно давайть более простые названия типо Listing.cshtml 
+
+- посмотри как прикрутить bundle config https://bundler.io/v1.16/bundle_config.html
+- посмотри как прикрутить T4MVС template 
+- посмотри как customErrors https://msdn.microsoft.com/en-us/library/h0hfz6fc(v=vs.85).aspx
+
+- везде помечай экшены в контроллерах http аттрибутами гет или пост 
+- надо еще поработать с RouteConfig
+    т.е. давай помечать не экшен аттрибутом роут, а создавать роуты в RouteConfig
+	по итогу будет что-то вроде routes.MapRoute("Home", String.Empty, MVC.Home.Index());	
+- попробуй заинжектить логгер, чтобы не вызывать Logger.InitLogger();
+
+- давай начнем испозьвать query 
+  начнем с валидации она должна быть клиентская + серверная
+
+-IIS (attach to iis)
+
+

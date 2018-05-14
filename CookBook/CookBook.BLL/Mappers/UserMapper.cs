@@ -12,7 +12,8 @@ namespace CookBook.BLL.Mappers
             {
                 Id = userModel.Id,
                 Login = userModel.Login,
-                Type = (AccountTypes)userModel.Type
+                Type = (AccountTypes)userModel.Type,
+                Password = userModel.Password
             };
         }
 
@@ -22,7 +23,8 @@ namespace CookBook.BLL.Mappers
             {
                 Id = user.Id,
                 Login = user.Login,
-                Type = (Enums.AccountTypes)user.Type
+                Type = (Enums.AccountTypes)user.Type,
+                Password = user.Password
             };
         }
     }

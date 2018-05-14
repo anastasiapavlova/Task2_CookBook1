@@ -157,6 +157,7 @@
   <ItemGroup>
     <Compile Include="App_Start\ResolverConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -170,7 +171,9 @@
     <Compile Include="Models\CompositionBaseViewModel.cs" />
     <Compile Include="Models\CompositionViewModel.cs" />
     <Compile Include="Models\IngredientViewModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RecipeViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\ReviewViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -204,6 +207,8 @@
     <Content Include="Views\Recipe\AddRecipe.cshtml" />
     <Content Include="Views\Recipe\ViewRecipeList.cshtml" />
     <Content Include="Views\Recipe\AddComposition.cshtml" />
+    <Content Include="Views\Authorization\Authorization.cshtml" />
+    <Content Include="Views\Authorization\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -10,5 +10,6 @@ namespace CookBook.PL.Models
         [StringLength(10)]
         public string Login { get; set; }
         public AccountTypes Type { get; set; }
+        public string Password { get; set; }
     }
 }

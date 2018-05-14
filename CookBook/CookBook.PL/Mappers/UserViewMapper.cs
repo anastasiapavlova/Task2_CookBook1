@@ -1,7 +1,7 @@
 ﻿using CookBook.PL.Models;
 using CookBook.BLL.Models;
 
-namespace CookBook.Pl.Mappers
+namespace CookBook.PL.Mappers
 {
     internal class UserViewMapper
     {
@@ -11,7 +11,8 @@ namespace CookBook.Pl.Mappers
             {
                 Id = userModel.Id,
                 Login = userModel.Login,
-                Type = userModel.Type
+                Type = userModel.Type,
+                Password = userModel.Password
             };
         }
 
@@ -21,7 +22,8 @@ namespace CookBook.Pl.Mappers
             {
                 Id = user.Id,
                 Login = user.Login,
-                Type = user.Type
+                Type = user.Type,
+                Password = user.Password
             };
         }
     }

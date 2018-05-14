@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using CookBook.PL.Models;
 using CookBook.BLL.Models;
-using CookBook.Pl.Mappers;
 
 namespace CookBook.PL.Mappers
 {

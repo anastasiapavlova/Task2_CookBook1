@@ -22,14 +22,14 @@ namespace CookBook.BLL.Services
             return resultList.Select(UserMapper.ConvertUserToUserModel).ToList();
         }
 
-        public void AddItem(User item)
+        public void AddItem(UserModel item)
         {
-            UserRepository.Add(item);
+            UserRepository.Add(UserMapper.ConvertUserModelToUser(item));
         }
 
-        public void AddItems(List<User> items)
+        public void AddItems(List<UserModel> items)
         {
-            UserRepository.AddRange(items);
+            UserRepository.AddRange(items.Select(UserMapper.ConvertUserModelToUser).ToList());
         }
 
         public void DeleteItem(Guid id)
@@ -37,9 +37,9 @@ namespace CookBook.BLL.Services
             UserRepository.Delete(id);
         }
 
-        public void UpdateItem(User item)
+        public void UpdateItem(UserModel item)
         {
-            UserRepository.Update(item);
+            UserRepository.Update(UserMapper.ConvertUserModelToUser(item));
         }
     }
 }

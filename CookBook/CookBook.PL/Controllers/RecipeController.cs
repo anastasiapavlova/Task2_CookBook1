@@ -5,7 +5,6 @@ using System.Web.Mvc;
 using CookBook.PL.Models;
 using CookBook.BLL.Models;
 using CookBook.PL.Mappers;
-using CookBook.Pl.Mappers;
 using CookBook.BLL.Logging;
 using CookBook.BLL.Interfaces;
 
