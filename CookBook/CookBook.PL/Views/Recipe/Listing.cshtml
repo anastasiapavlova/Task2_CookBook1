@@ -1,0 +1,38 @@
+﻿@model IEnumerable<CookBook.PL.Models.RecipeViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Listing";
+    var grid = new WebGrid(source: Model,
+        defaultSort: "Name",
+        rowsPerPage: 5);
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<h2 class="section-heading mb-4">
+    <span class="section-heading-lower">Recipe list</span>
+</h2>
+@grid.GetHtml(
+    tableStyle: "table table-bordered",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    rowStyle: "webgrid-row-style",
+    columns: grid.Columns(
+        grid.Column(format: @<text><div>@(item.WebGrid.Rows.IndexOf(item) + 1)</div></text>),
+                grid.Column(columnName: "Name", header: "Name", canSort: false),
+                grid.Column(columnName: "User.Login", header: "Author", canSort: false),
+                grid.Column(columnName: "Category", header: "Category", canSort: false),
+                grid.Column(header: "Edit", format: (item) =>
+                {
+                    var link = Html.RouteLink("Edit", new { controller = "Recipe", action = "EditRecipe", id = item.id }, new { id = item.id });
+                    return link;
+                }),
+                grid.Column(header: "Delete", format: (item) =>
+                {
+                    var link = Html.RouteLink("Delete", new { controller = "Recipe", action = "DeleteRecipe", id = item.id }, new { id = item.id });
+                    return link;
+                })
+                ))
+
+

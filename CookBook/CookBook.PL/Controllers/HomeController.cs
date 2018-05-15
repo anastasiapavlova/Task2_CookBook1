@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Web.Mvc;
 using CookBook.BLL.Logging;
+using CookBook.PL.Util;
 
 namespace CookBook.PL.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         [HandleError(View = "_Error")]
         public ActionResult Index()
         {

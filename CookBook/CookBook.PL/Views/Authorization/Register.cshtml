@@ -5,5 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Register</h2>
+<div class="cta-inner text-center rounded">
+    <h2 class="section-heading mb-4">
+        <span class="section-heading-lower">Registration</span>
+    </h2>
+    @using (Html.BeginForm("Register", "Authorization"))
+    {
+        @Html.ValidationSummary()
+        <p>Username</p>
+        @Html.EditorFor(x => x.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+        <p>Password</p>
+        @Html.EditorFor(x => x.Password)
+        @Html.ValidationMessageFor(model => model.Password)
+        <p>Confirm password</p>
+        @Html.EditorFor(x => x.ConfirmPassword)
+        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+        <div>
+            <button class="cupid-green-l">Register</button>
+        </div>
+        <div>
+            <div>@Html.RouteLink("You can log in on our site", new { controller = "Authorization", action = "Login" })</div>
+        </div>
+    }
+</div>
 

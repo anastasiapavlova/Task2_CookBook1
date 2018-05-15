@@ -1,11 +1,10 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CookBook.PL.Models
 {
     public class CompositionViewModel: CompositionBaseViewModel
     {
-        [Required(ErrorMessage ="Необходимо заполнить поле название ингредиента")]
+        [Required(ErrorMessage = "Ingredient name is required")]
         public string IngredientName { get; set; }
     }
 }

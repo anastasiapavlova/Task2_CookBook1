@@ -21,7 +21,7 @@ namespace CookBook.PL.Controllers
         [Inject]
         public IUserService UserService { get; set; }
 
-        [Route("recipes-list")]
+        [HttpGet]
         [HandleError(View = "_Error")]
         public ActionResult ViewRecipeList()
         {
@@ -29,7 +29,7 @@ namespace CookBook.PL.Controllers
             {
                 var recipeList = RecipeService.GetList().Select(RecipeViewMapper.ConvertRecipeModelToRecipeViewModel).ToList();
                 recipeList.Select(x => x.User = UserViewMapper.ConvertUserModelToUserViewModel(UserService.GetList().FirstOrDefault(y => y.Id == x.UserId))).ToList();
-                return View("ViewRecipeList", recipeList);
+                return View("Listing", recipeList);
             }
             catch (Exception e)
             {
@@ -40,7 +40,6 @@ namespace CookBook.PL.Controllers
         }
 
         [HttpGet]
-        [Route("add-recipe")]
         [HandleError(View = "_Error")]
         public ActionResult AddRecipe()
         {
@@ -57,7 +56,6 @@ namespace CookBook.PL.Controllers
         }
 
         [HttpPost]
-        [Route("add-recipe")]
         [HandleError(View = "_Error")]
         public ActionResult AddRecipe(RecipeViewModel recipe)
         {
@@ -79,6 +77,7 @@ namespace CookBook.PL.Controllers
             }
         }
 
+        [HttpGet]
         [HandleError(View = "_Error")]
         public ActionResult DeleteRecipe(Guid id)
         {
@@ -95,7 +94,7 @@ namespace CookBook.PL.Controllers
             }
         }
 
-        [Route("edit-recipe")]
+        [HttpGet]
         [HandleError(View = "_Error")]
         public ActionResult EditRecipe(Guid id)
         {
@@ -103,7 +102,7 @@ namespace CookBook.PL.Controllers
             {
                 ViewBag.IngredientId = new SelectList(IngredientService.GetList().Select(IngredientViewMapper.ConvertIngredientModelToIngredientViewModel).ToList(), "Id", "Name");
                 var modelRecipe = RecipeViewMapper.ConvertRecipeModelToRecipeViewModel(RecipeService.GetItem(id));
-                return View("EditRecipe", modelRecipe);
+                return View("Editing", modelRecipe);
             }
             catch (Exception e)
             {
@@ -113,6 +112,7 @@ namespace CookBook.PL.Controllers
             }
         }
 
+        [HttpPost]
         [HandleError(View = "_Error")]
         public ActionResult AddExistComposition(CompositionBaseViewModel model)
         {
@@ -133,6 +133,7 @@ namespace CookBook.PL.Controllers
             }
         }
 
+        [HttpPost]
         [HandleError(View = "_Error")]
         public ActionResult AddNewComposition(CompositionViewModel model)
         {

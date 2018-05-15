@@ -16,8 +16,8 @@
 
 <body>
     <h1 class="site-heading text-center text-white d-none d-lg-block">
-        <span class="site-heading-upper text-primary mb-3">электронная</span>
-        <span class="site-heading-lower">кулинарная книга</span>
+        <span class="site-heading-upper text-primary mb-3">electronic</span>
+        <span class="site-heading-lower">recipe book</span>
     </h1>
 
     <!-- Navigation -->
@@ -30,13 +30,19 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item active px-lg-4">
-                        <a class="nav-link text-uppercase" href="../Home/">Главная</a>
+                        <a class="nav-link text-uppercase" href="../Home/">Home</a>
                     </li>
                     <li class="nav-item active px-lg-4">
-                        <a class="nav-link text-uppercase" href="@Url.Action("ViewRecipeList", "Recipe")">Список рецептов</a>
+                        <a class="nav-link text-uppercase" href="@Url.Action("Login", "Authorization")">Log in/Log off</a>
                     </li>
                     <li class="nav-item active px-lg-4">
-                        <a class="nav-link text-uppercase" href="@Url.Action("AddRecipe", "Recipe")">Добавить рецепт</a>
+                        <a class="nav-link text-uppercase" href="@Url.Action("ViewRecipeList", "Recipe")">Recipe list</a>
+                    </li>
+                    <li class="nav-item active px-lg-4">
+                        <a class="nav-link text-uppercase" href="@Url.Action("AddRecipe", "Recipe")">Add recipe</a>
+                    </li>
+                    <li class="nav-item active px-lg-4">
+                        <a class="nav-link text-uppercase" href="@Url.Action("UserControl", "UserControl")">User control</a>
                     </li>
                 </ul>
             </div>

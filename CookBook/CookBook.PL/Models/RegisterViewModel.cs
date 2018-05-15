@@ -13,7 +13,8 @@ namespace CookBook.PL.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        [Compare("Password", ErrorMessage = "Passwords don't match")]
         public string ConfirmPassword { get; set; }
+        public string Gender { get; set; }
     }
 }

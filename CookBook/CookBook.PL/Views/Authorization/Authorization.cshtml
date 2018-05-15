@@ -5,5 +5,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>View</h2>
+@{
+    if (ViewBag.Login == true)
+    {
+        <div class="cta-inner text-center rounded">
+            <h2 class="section-heading mb-4">
+                <span class="section-heading-lower">You are already registered, @HttpContext.Current.User.Identity.Name</span>
+            </h2>
+            <div>
+                @using (Html.BeginForm("Logoff", "Authorization"))
+                {
+                    <button class="cupid-green-l">Log off</button>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="cta-inner text-center rounded">
+            <h2 class="section-heading mb-4">
+                <span class="section-heading-lower">Log in</span>
+            </h2>
+            @using (Html.BeginForm("Login", "Authorization"))
+            {
+                @Html.ValidationSummary()
+                <p>Username</p>
+                @Html.EditorFor(x => x.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+                <p>Password</p>
+                @Html.EditorFor(x => x.Password)
+                @Html.ValidationMessageFor(model => model.Password)
+                <div>
+                    <button class="cupid-green-l">Log in</button>
+                </div>
+                <div>
+                    <div>@Html.RouteLink("You can register on our site", new { controller = "Authorization", action = "Register" })</div>
+                </div>
+            }
+        </div>
+    }
+}
 

@@ -6,6 +6,11 @@ namespace CookBook.Domain.Models
 {
     public class User
     {
+        public User()
+        {
+            Id = Guid.NewGuid();
+        }
+
         public Guid Id { get; set; }
         public string Login { get; set; }
         public AccountTypes Type { get; set; }

@@ -11,7 +11,7 @@
 
 
 <h2 class="section-heading mb-4">
-    <span class="section-heading-lower">Редактирование рецепта</span>
+    <span class="section-heading-lower">Recipe editing</span>
 </h2>
 <div>
     @grid.GetHtml(
@@ -22,8 +22,8 @@
              rowStyle: "webgrid-row-style",
              columns: grid.Columns(
              grid.Column(format: @<text><div>@(item.WebGrid.Rows.IndexOf(item) + 1)</div></text>),
-                  grid.Column(columnName: "IngredientName", header: "Название", canSort: false),
-                  grid.Column(columnName: "Quantity", header: "Количество", canSort: false)))
+                  grid.Column(columnName: "IngredientName", header: "Name", canSort: false),
+                  grid.Column(columnName: "Quantity", header: "Quantity", canSort: false)))
 </div>
 
 @Html.Partial("AddComposition", new CookBook.PL.Models.CompositionViewModel { RecipeId = Model.Id})
