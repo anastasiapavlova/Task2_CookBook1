@@ -256,6 +256,9 @@ p {
     font-weight: 100 !important
 }
 
+button.cupid-green {
+    margin-top: 75px;
+}
 
 button.cupid-green {
     background-color: #e6a756;

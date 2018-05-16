@@ -11,7 +11,7 @@
 
 
 <h2 class="section-heading mb-4">
-    <span class="section-heading-lower">Recipe editing</span>
+    <span class="section-heading-lower">@CookBook.PL.Resources.NavBarNames.NavRecipeEdit</span>
 </h2>
 <div>
     @grid.GetHtml(
@@ -26,4 +26,4 @@
                   grid.Column(columnName: "Quantity", header: "Quantity", canSort: false)))
 </div>
 
-@Html.Partial("AddComposition", new CookBook.PL.Models.CompositionViewModel { RecipeId = Model.Id})
+@Html.Partial(MVC.Recipe.Views.AddComposition, new CookBook.PL.Models.CompositionViewModel { RecipeId = Model.Id})

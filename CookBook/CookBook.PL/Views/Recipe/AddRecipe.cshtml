@@ -1,21 +1,26 @@
-﻿@{
+﻿@model CookBook.PL.Models.RecipeViewModel
+
+@{
     ViewBag.Title = "AddRecipe";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2 class="section-heading mb-4">
-    <span class="section-heading-lower">Add recipe</span>
+    <span class="section-heading-lower">@CookBook.PL.Resources.NavBarNames.NavAddRecipe</span>
 </h2>
-@using (Html.BeginForm("AddRecipe", "Recipe"))
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+@using (Html.BeginForm(MVC.Recipe.AddRecipe()))
 {
-    @Html.ValidationSummary()
     <p>Enter recipe name</p>
     @Html.TextBox("Name", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.Name)
     <p>Enter recipe type</p>
     @Html.DropDownList("Category", EnumHelper.GetSelectList(typeof(CookBook.BLL.Enums.CategoryTypes)), new { @class = "form-control" })
     <p>Enter recipe description</p>
     @Html.TextArea("Description", null, new { @class = "form-control" })
     <div class="col-3">
-        <button class="cupid-green-l">Add</button>
+        <button class="cupid-green-l">@CookBook.PL.Resources.ButtonNames.BtnAdd</button>
     </div>
 }
+

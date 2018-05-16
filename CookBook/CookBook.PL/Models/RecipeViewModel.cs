@@ -10,7 +10,7 @@ namespace CookBook.PL.Models
         public Guid Id { get; set; }
         public CategoryTypes Category { get; set; }
 
-        [Required(ErrorMessage = "Name is required")]
+        [Required]
         public string Name { get; set; }
         public Guid UserId { get; set; }
         public List<CompositionViewModel> Composition { get; set; }

@@ -7,9 +7,11 @@
 
 <div class="cta-inner text-center rounded">
     <h2 class="section-heading mb-4">
-        <span class="section-heading-lower">Registration</span>
+        <span class="section-heading-lower">@CookBook.PL.Resources.Names.Registration</span>
     </h2>
-    @using (Html.BeginForm("Register", "Authorization"))
+    @{Html.EnableClientValidation();}
+    @{Html.EnableUnobtrusiveJavaScript();}
+    @using (Html.BeginForm(MVC.Authorization.Register()))
     {
         @Html.ValidationSummary()
         <p>Username</p>
@@ -22,10 +24,10 @@
         @Html.EditorFor(x => x.ConfirmPassword)
         @Html.ValidationMessageFor(model => model.ConfirmPassword)
         <div>
-            <button class="cupid-green-l">Register</button>
+            <button class="cupid-green-l">@CookBook.PL.Resources.ButtonNames.BtnRegister</button>
         </div>
         <div>
-            <div>@Html.RouteLink("You can log in on our site", new { controller = "Authorization", action = "Login" })</div>
+            <div>@Html.ActionLink(@CookBook.PL.Resources.InfoTexts.LinkLog, MVC.Authorization.Login())</div>
         </div>
     }
 </div>

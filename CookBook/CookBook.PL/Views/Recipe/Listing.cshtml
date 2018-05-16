@@ -10,7 +10,7 @@
 }
 
 <h2 class="section-heading mb-4">
-    <span class="section-heading-lower">Recipe list</span>
+    <span class="section-heading-lower">@CookBook.PL.Resources.NavBarNames.NavRecipeList</span>
 </h2>
 @grid.GetHtml(
     tableStyle: "table table-bordered",
@@ -23,15 +23,15 @@
                 grid.Column(columnName: "Name", header: "Name", canSort: false),
                 grid.Column(columnName: "User.Login", header: "Author", canSort: false),
                 grid.Column(columnName: "Category", header: "Category", canSort: false),
-                grid.Column(header: "Edit", format: (item) =>
+                grid.Column(header: @CookBook.PL.Resources.ButtonNames.BtnEdit, format: (item) =>
                 {
-                    var link = Html.RouteLink("Edit", new { controller = "Recipe", action = "EditRecipe", id = item.id }, new { id = item.id });
-                    return link;
+                    return Html.ActionLink(@CookBook.PL.Resources.ButtonNames.BtnEdit, MVC.Recipe.EditRecipe()
+                        .AddRouteValues(new {id = item.id}));
                 }),
-                grid.Column(header: "Delete", format: (item) =>
+                grid.Column(header: @CookBook.PL.Resources.ButtonNames.BtnDelete, format: (item) =>
                 {
-                    var link = Html.RouteLink("Delete", new { controller = "Recipe", action = "DeleteRecipe", id = item.id }, new { id = item.id });
-                    return link;
+                    return Html.ActionLink(@CookBook.PL.Resources.ButtonNames.BtnDelete, MVC.Recipe.DeleteRecipe()
+                        .AddRouteValues(new { id = item.id }));
                 })
                 ))
 

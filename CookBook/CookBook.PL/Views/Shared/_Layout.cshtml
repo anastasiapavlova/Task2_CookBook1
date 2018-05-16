@@ -1,23 +1,19 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
     <title>CookBook</title>
-    <link href="../../Content/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
-    <link href="../../Content/business-casual.min.css" rel="stylesheet">
-
+    @Styles.Render(CookBook.PL.Links.Bundles.Styles.bootstrap)
+    @Styles.Render(CookBook.PL.Links.Bundles.Styles.theme)
 </head>
 
 <body>
     <h1 class="site-heading text-center text-white d-none d-lg-block">
-        <span class="site-heading-upper text-primary mb-3">electronic</span>
-        <span class="site-heading-lower">recipe book</span>
+        <span class="site-heading-upper text-primary mb-3">@CookBook.PL.Resources.Names.SiteNamePart1</span>
+        <span class="site-heading-lower">@CookBook.PL.Resources.Names.SiteNamePart2</span>
     </h1>
 
     <!-- Navigation -->
@@ -30,19 +26,19 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item active px-lg-4">
-                        <a class="nav-link text-uppercase" href="../Home/">Home</a>
+                        <a class="nav-link text-uppercase" href="@Url.Action(MVC.Home.Index())">@CookBook.PL.Resources.NavBarNames.NavHome</a>
                     </li>
                     <li class="nav-item active px-lg-4">
-                        <a class="nav-link text-uppercase" href="@Url.Action("Login", "Authorization")">Log in/Log off</a>
+                        <a class="nav-link text-uppercase" href="@Url.Action(MVC.Authorization.Login())">@CookBook.PL.Resources.NavBarNames.NavLog</a>
                     </li>
                     <li class="nav-item active px-lg-4">
-                        <a class="nav-link text-uppercase" href="@Url.Action("ViewRecipeList", "Recipe")">Recipe list</a>
+                        <a class="nav-link text-uppercase" href="@Url.Action(MVC.Recipe.ViewRecipeList())">@CookBook.PL.Resources.NavBarNames.NavRecipeList</a>
                     </li>
                     <li class="nav-item active px-lg-4">
-                        <a class="nav-link text-uppercase" href="@Url.Action("AddRecipe", "Recipe")">Add recipe</a>
+                        <a class="nav-link text-uppercase" href="@Url.Action(MVC.Recipe.AddRecipe())">@CookBook.PL.Resources.NavBarNames.NavAddRecipe</a>
                     </li>
                     <li class="nav-item active px-lg-4">
-                        <a class="nav-link text-uppercase" href="@Url.Action("UserControl", "UserControl")">User control</a>
+                        <a class="nav-link text-uppercase" href="@Url.Action(MVC.UserControl.UserControl())">@CookBook.PL.Resources.NavBarNames.NavUserControl</a>
                     </li>
                 </ul>
             </div>
@@ -55,6 +51,12 @@
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
                         <div class="bg-faded rounded p-5">
+                            <diV align="right">
+                                @if (!String.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
+                                {
+                                    <p>Login: @HttpContext.Current.User.Identity.Name</p>
+                                }
+                            </diV>
                             @RenderBody()
                         </div>
                     </div>
@@ -68,9 +70,7 @@
             <p class="m-0 small">Copyright &copy; CookBook 2018</p>
         </div>
     </footer>
-    <script src="../../Scripts/jquery.min.js"></script>
-    <script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="../../Scripts/bootstrap.bundle.min.js"></script>
+
+    @Scripts.Render(CookBook.PL.Links.Bundles.Scripts.jquery)
 </body>
 </html>

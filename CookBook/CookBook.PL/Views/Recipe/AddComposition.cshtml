@@ -1,46 +1,50 @@
 ﻿@model CookBook.PL.Models.CompositionViewModel
 
 <h2 class="section-heading mb-4">
-    <span class="section-heading-lower">Add ingredients</span>
+    <span class="section-heading-lower">@CookBook.PL.Resources.NavBarNames.AddIngredients</span>
 </h2>
-@using (Html.BeginForm("AddExistComposition", "Recipe"))
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+@using (Html.BeginForm(MVC.Recipe.AddExistComposition()))
 {
     <div class="container">
         <div class="row">
             @Html.HiddenFor(model => model.RecipeId)
             <div class="col-3">
                 <p>Ingredient name</p>
-                @Html.DropDownListFor(model => model.IngredientId,null, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.IngredientId, null, new {@class = "form-control"})
             </div>
-            
+
             <div class="col-3">
                 <p>Amount</p>
-                @Html.TextBoxFor(model => model.Quantity, null, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Quantity, null, new {@class = "form-control"})
                 @Html.ValidationMessageFor(model => model.Quantity)
             </div>
             <div class="col-3">
-                <button class="cupid-green">Add</button>
+                <button class="cupid-green">@CookBook.PL.Resources.ButtonNames.BtnAdd</button>
             </div>
         </div>
     </div>
 }
-@using (Html.BeginForm("AddNewComposition", "Recipe"))
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+@using (Html.BeginForm(MVC.Recipe.AddNewComposition()))
 {
     <div class="container">
         <div class="row">
             @Html.HiddenFor(model => model.RecipeId)
             <div class="col-3">
                 <p>Ingredient name</p>
-                @Html.TextBoxFor(model => model.IngredientName, null, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.IngredientName, null, new {@class = "form-control"})
                 @Html.ValidationMessageFor(model => model.IngredientName)
             </div>
             <div class="col-3">
                 <p>Amount</p>
-                @Html.TextBoxFor(x=>x.Quantity, null, new { @class = "form-control" })
+                @Html.TextBoxFor(x => x.Quantity, null, new {@class = "form-control"})
                 @Html.ValidationMessageFor(model => model.Quantity)
             </div>
             <div class="col-3">
-                <button class="cupid-green">Add</button>
+                <button class="cupid-green">@CookBook.PL.Resources.ButtonNames.BtnAdd</button>
             </div>
         </div>
     </div>

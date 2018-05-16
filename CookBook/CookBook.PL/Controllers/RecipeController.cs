@@ -10,7 +10,7 @@ using CookBook.BLL.Interfaces;
 
 namespace CookBook.PL.Controllers
 {
-    public class RecipeController : Controller
+    public partial class RecipeController : Controller
     {
         [Inject]
         public IRecipeService RecipeService { get; set; }
@@ -23,41 +23,41 @@ namespace CookBook.PL.Controllers
 
         [HttpGet]
         [HandleError(View = "_Error")]
-        public ActionResult ViewRecipeList()
+        public virtual ActionResult ViewRecipeList()
         {
             try
             {
                 var recipeList = RecipeService.GetList().Select(RecipeViewMapper.ConvertRecipeModelToRecipeViewModel).ToList();
                 recipeList.Select(x => x.User = UserViewMapper.ConvertUserModelToUserViewModel(UserService.GetList().FirstOrDefault(y => y.Id == x.UserId))).ToList();
-                return View("Listing", recipeList);
+                return View(Views.Listing, recipeList);
             }
             catch (Exception e)
             {
                 Logger.InitLogger();
                 Logger.Log.Error("Error: " + e);
-                return View("_Error");
+                return RedirectToAction(MVC.Home.ErrorAc());
             }
         }
 
         [HttpGet]
         [HandleError(View = "_Error")]
-        public ActionResult AddRecipe()
+        public virtual ActionResult AddRecipe()
         {
             try
             {
-                return View("AddRecipe");
+                return View(Views.AddRecipe);
             }
             catch (Exception e)
             {
                 Logger.InitLogger();
                 Logger.Log.Error("Error: " + e);
-                return View("_Error");
+                return RedirectToAction(MVC.Home.ErrorAc());
             }
         }
 
         [HttpPost]
         [HandleError(View = "_Error")]
-        public ActionResult AddRecipe(RecipeViewModel recipe)
+        public virtual ActionResult AddRecipe(RecipeViewModel recipe)
         {
             try
             {
@@ -65,77 +65,77 @@ namespace CookBook.PL.Controllers
                 {
                     recipe.User = UserViewMapper.ConvertUserModelToUserViewModel(UserService.GetList().FirstOrDefault());
                     RecipeService.AddItem(RecipeViewMapper.ConvertRecipeViewModelToRecipeModel(recipe));
-                    return RedirectToAction("ViewRecipeList");
+                    return RedirectToAction(MVC.Recipe.ViewRecipeList());
                 }
-                return View("AddRecipe");
+                return View(Views.AddRecipe);
             }
             catch (Exception e)
             {
                 Logger.InitLogger();
                 Logger.Log.Error("Error: " + e);
-                return View("_Error");
-            }
-        }
-
-        [HttpGet]
-        [HandleError(View = "_Error")]
-        public ActionResult DeleteRecipe(Guid id)
-        {
-            try
-            {
-                RecipeService.DeleteItem(id);
-                return RedirectToAction("ViewRecipeList");
-            }
-            catch (Exception e)
-            {
-                Logger.InitLogger();
-                Logger.Log.Error("Error: " + e);
-                return View("_Error");
-            }
-        }
-
-        [HttpGet]
-        [HandleError(View = "_Error")]
-        public ActionResult EditRecipe(Guid id)
-        {
-            try
-            {
-                ViewBag.IngredientId = new SelectList(IngredientService.GetList().Select(IngredientViewMapper.ConvertIngredientModelToIngredientViewModel).ToList(), "Id", "Name");
-                var modelRecipe = RecipeViewMapper.ConvertRecipeModelToRecipeViewModel(RecipeService.GetItem(id));
-                return View("Editing", modelRecipe);
-            }
-            catch (Exception e)
-            {
-                Logger.InitLogger();
-                Logger.Log.Error("Error: " + e);
-                return View("_Error");
+                return RedirectToAction(MVC.Home.ErrorAc());
             }
         }
 
         [HttpPost]
         [HandleError(View = "_Error")]
-        public ActionResult AddExistComposition(CompositionBaseViewModel model)
+        public virtual ActionResult DeleteRecipe(Guid id)
+        {
+            try
+            {
+                RecipeService.DeleteItem(id);
+                return RedirectToAction(MVC.Recipe.ViewRecipeList());
+            }
+            catch (Exception e)
+            {
+                Logger.InitLogger();
+                Logger.Log.Error("Error: " + e);
+                return RedirectToAction(MVC.Home.ErrorAc());
+            }
+        }
+
+        [HttpGet]
+        [HandleError(View = "_Error")]
+        public virtual ActionResult EditRecipe(Guid id)
+        {
+            try
+            {
+                ViewBag.IngredientId = new SelectList(IngredientService.GetList().Select(IngredientViewMapper.ConvertIngredientModelToIngredientViewModel).ToList(), "Id", "Name");
+                var modelRecipe = RecipeViewMapper.ConvertRecipeModelToRecipeViewModel(RecipeService.GetItem(id));
+                return View(Views.Editing, modelRecipe);
+            }
+            catch (Exception e)
+            {
+                Logger.InitLogger();
+                Logger.Log.Error("Error: " + e);
+                return RedirectToAction(MVC.Home.ErrorAc());
+            }
+        }
+
+        [HttpPost]
+        [HandleError(View = "_Error")]
+        public virtual ActionResult AddExistComposition(CompositionBaseViewModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     CompositionService.AddItem(CompositionViewMapper.ConvertCompositonViewModelToCompositionModel(model));
-                    return RedirectToAction("EditRecipe", new { id = model.RecipeId });
+                    return RedirectToAction(MVC.Recipe.EditRecipe(model.RecipeId));
                 }
-                return RedirectToAction("EditRecipe", new { id = model.RecipeId });
+                return RedirectToAction(MVC.Recipe.EditRecipe(model.RecipeId));
             }
             catch (Exception e)
             {
                 Logger.InitLogger();
                 Logger.Log.Error("Error: " + e);
-                return View("_Error");
+                return RedirectToAction(MVC.Home.ErrorAc());
             }
         }
 
         [HttpPost]
         [HandleError(View = "_Error")]
-        public ActionResult AddNewComposition(CompositionViewModel model)
+        public virtual ActionResult AddNewComposition(CompositionViewModel model)
         {
             try
             {
@@ -143,15 +143,15 @@ namespace CookBook.PL.Controllers
                 {
                     model.IngredientId = IngredientService.AddItem(new IngredientModel { Name = model.IngredientName });
                     CompositionService.AddItem(CompositionViewMapper.ConvertCompositonViewModelToCompositionModel(model));
-                    return RedirectToAction("EditRecipe", new { id = model.RecipeId });
+                    return RedirectToAction(MVC.Recipe.EditRecipe(model.RecipeId));
                 }
-                return RedirectToAction("EditRecipe", new { id = model.RecipeId });
+                return RedirectToAction(MVC.Recipe.EditRecipe(model.RecipeId));
             }
             catch (Exception e)
             {
                 Logger.InitLogger();
                 Logger.Log.Error("Error: " + e);
-                return View("_Error");
+                return RedirectToAction(MVC.Home.ErrorAc());
             }
         }
     }

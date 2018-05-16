@@ -4,7 +4,7 @@ namespace CookBook.PL.Models
 {
     public class CompositionViewModel: CompositionBaseViewModel
     {
-        [Required(ErrorMessage = "Ingredient name is required")]
+        [Required]
         public string IngredientName { get; set; }
     }
 }

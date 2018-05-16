@@ -1,29 +1,30 @@
 ﻿using System;
 using System.Web.Mvc;
 using CookBook.BLL.Logging;
-using CookBook.PL.Util;
+using T4MVCExtensions;
 
 namespace CookBook.PL.Controllers
 {
-    public class HomeController : Controller
+    public partial class HomeController : Controller
     {
         [HttpGet]
         [HandleError(View = "_Error")]
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             try
             {
-                return View("Index");
+                return View(Views.Index);
             }
             catch (Exception e)
             {
                 Logger.InitLogger();
                 Logger.Log.Error("Error: " + e);
-                return View("_Error");
+                return View(MVC.Home.ErrorAc());
             }
         }
 
-        public ActionResult ErrorAc()
+        [HttpGet]
+        public virtual ActionResult ErrorAc()
         {
             return View("_Error");
         }

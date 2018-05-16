@@ -10,7 +10,7 @@
 }
 
 <h2 class="section-heading mb-4">
-    <span class="section-heading-lower">User control</span>
+    <span class="section-heading-lower">@CookBook.PL.Resources.NavBarNames.UserControl</span>
 </h2>
 
 @grid.GetHtml(
@@ -23,9 +23,9 @@
         grid.Column(format: @<text><div>@(item.WebGrid.Rows.IndexOf(item) + 1)</div></text>),
         grid.Column(columnName: "Login", header: "Login", canSort: false),
         grid.Column(columnName: "Type", header: "Category", canSort: false),
-        grid.Column(header: "Delete", format: (item) =>
+        grid.Column(header: @CookBook.PL.Resources.ButtonNames.BtnDelete, format: (item) =>
         {
-            var link = Html.RouteLink("Delete", new { controller = "UserControl", action = "DeleteUser", id = item.id }, new { id = item.id });
-            return link;
+            return Html.ActionLink(@CookBook.PL.Resources.ButtonNames.BtnDelete, MVC.UserControl.DeleteUser()
+                .AddRouteValues(new { id = item.id }));
         })
         ))

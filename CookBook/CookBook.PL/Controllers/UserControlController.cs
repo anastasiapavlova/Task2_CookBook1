@@ -9,44 +9,45 @@ using CookBook.PL.Util;
 
 namespace CookBook.PL.Controllers
 {
-    public class UserControlController : Controller
+    public partial class UserControlController : Controller
     {
         [Inject]
         public IUserService UserService { get; set; }
 
         [HttpGet]
         [ClaimsAuthorize]
+        //[AllowAnonymous]
         [HandleError(View = "_Error")]
-        public ActionResult UserControl()
+        public virtual ActionResult UserControl()
         {
             try
             {
                 var users = UserService.GetList().Select(UserViewMapper.ConvertUserModelToUserViewModel).ToList();
-                return View("UserControl", users);
+                return View(Views.UserControl, users);
             }
             catch (Exception e)
             {
                 Logger.InitLogger();
                 Logger.Log.Error("Error: " + e);
-                return View("_Error");
+                return RedirectToAction(MVC.Home.ErrorAc());
             }
         }
-        
+
         [HttpPost]
-        [ClaimsAuthorize]
+        //[ClaimsAuthorize]
         [HandleError(View = "_Error")]
-        public ActionResult DeleteUser(Guid id)
+        public virtual ActionResult DeleteUser(Guid id)
         {
             try
             {
                 UserService.DeleteItem(id);
-                return RedirectToAction("UserControl");
+                return RedirectToAction(MVC.UserControl.UserControl());
             }
             catch (Exception e)
             {
                 Logger.InitLogger();
                 Logger.Log.Error("Error: " + e);
-                return View("_Error");
+                return RedirectToAction(MVC.Home.ErrorAc());
             }
         }
     }

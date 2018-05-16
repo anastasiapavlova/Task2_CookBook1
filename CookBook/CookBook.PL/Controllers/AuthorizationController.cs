@@ -9,28 +9,40 @@ using CookBook.BLL.Models;
 using System.Web.Security;
 using System.Security.Claims;
 using CookBook.BLL.Interfaces;
+using CookBook.BLL.Logging;
+using log4net;
+using log4net.Core;
 using Microsoft.Owin.Security;
 
 namespace CookBook.PL.Controllers
 {
-    public class AuthorizationController : Controller
+    public partial class AuthorizationController : Controller
     {
         [Inject]
         public IUserService UserService { get; set; }
 
         [HttpGet]
-        public ActionResult Login()
+        public virtual ActionResult Login()
         {
-            var user = Initialize();
-            if (user != null)
+            try
             {
-                ViewBag.Login = true;
+                var user = Initialize();
+                if (user != null)
+                {
+                    ViewBag.Login = true;
+                }
+                return View(Views.Authorization);
             }
-            return View("Authorization");
+            catch (Exception e)
+            {
+                Logger.InitLogger();
+                Logger.Log.Error("Error: " + e);
+                return RedirectToAction(MVC.Home.ErrorAc());
+            }
         }
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel model)
+        public virtual ActionResult Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -38,15 +50,8 @@ namespace CookBook.PL.Controllers
 
                 if (user != null)
                 {
-                    //ClaimsIdentity claim = new ClaimsIdentity("ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-                   
-                    var claim = new ClaimsIdentity(new[] {
-                            new Claim(ClaimTypes.NameIdentifier, String.Empty),
-                            new Claim(ClaimTypes.Name, String.Empty),
-                            new Claim(ClaimTypes.Role, "User"),
-                            new Claim(ClaimTypes.Role, "Admin")
-                        },
-                        "ApplicationCookie");
+                    ClaimsIdentity claim = new ClaimsIdentity("ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+
                     claim.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString(), ClaimValueTypes.String));
                     claim.AddClaim(new Claim(ClaimTypes.Name, user.Login, ClaimValueTypes.String));
                     claim.AddClaim(new Claim(ClaimTypes.Role, user.Type.ToString(), ClaimValueTypes.String));
@@ -56,27 +61,27 @@ namespace CookBook.PL.Controllers
                     {
                         IsPersistent = true
                     }, claim);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction(MVC.Home.Index());
                 }
                 else
                 {
-                    return View("_Error");
+                    return RedirectToAction(MVC.Home.ErrorAc());
                 }
             }
 
-            return View("Register");
+            return View(Views.Register);
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult Register()
+        public virtual ActionResult Register()
         {
-            return View("Register");
+            return View(Views.Register);
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Register(RegisterViewModel model)
+        public virtual ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +91,7 @@ namespace CookBook.PL.Controllers
                 {
                     UserService.AddItem(new UserModel { Login = model.Name, Password = model.Password, Type = AccountTypes.User });
                     FormsAuthentication.SetAuthCookie(model.Name, true);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction(MVC.Home.Index());
                 }
                 else
                 {
@@ -94,14 +99,14 @@ namespace CookBook.PL.Controllers
                 }
             }
 
-            return View(model);
+            return View(Views.Register,model);
         }
 
         [HttpPost]
-        public ActionResult Logoff()
+        public virtual ActionResult Logoff()
         {
             HttpContext.GetOwinContext().Authentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(MVC.Home.Index());
         }
 
         private UserViewModel Initialize()
