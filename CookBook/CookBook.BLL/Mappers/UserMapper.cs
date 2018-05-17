@@ -10,7 +10,6 @@ namespace CookBook.BLL.Mappers
         {
             return new User
             {
-                Id = userModel.Id,
                 Login = userModel.Login,
                 Type = (AccountTypes)userModel.Type,
                 Password = userModel.Password

@@ -23,15 +23,30 @@
                 grid.Column(columnName: "Name", header: "Name", canSort: false),
                 grid.Column(columnName: "User.Login", header: "Author", canSort: false),
                 grid.Column(columnName: "Category", header: "Category", canSort: false),
+
                 grid.Column(header: @CookBook.PL.Resources.ButtonNames.BtnEdit, format: (item) =>
                 {
-                    return Html.ActionLink(@CookBook.PL.Resources.ButtonNames.BtnEdit, MVC.Recipe.EditRecipe()
-                        .AddRouteValues(new {id = item.id}));
+                    if (User.IsInRole("User") || User.IsInRole("Admin"))
+                    {
+                        return Html.ActionLink(@CookBook.PL.Resources.ButtonNames.BtnEdit, MVC.Recipe.EditRecipe()
+                            .AddRouteValues(new {id = item.id}));
+                    }
+                    else
+                    {
+                        return "Prohibited";
+                    }
                 }),
                 grid.Column(header: @CookBook.PL.Resources.ButtonNames.BtnDelete, format: (item) =>
                 {
-                    return Html.ActionLink(@CookBook.PL.Resources.ButtonNames.BtnDelete, MVC.Recipe.DeleteRecipe()
-                        .AddRouteValues(new { id = item.id }));
+                    if (User.IsInRole("User") || User.IsInRole("Admin"))
+                    {
+                        return Html.ActionLink(@CookBook.PL.Resources.ButtonNames.BtnDelete, MVC.Recipe.DeleteRecipe()
+                            .AddRouteValues(new {id = item.id}));
+                    }
+                    else
+                    {
+                        return "Prohibited";
+                    }
                 })
                 ))
 

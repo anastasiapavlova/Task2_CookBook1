@@ -5,7 +5,6 @@ using System.Web.Mvc;
 using CookBook.PL.Mappers;
 using CookBook.BLL.Logging;
 using CookBook.BLL.Interfaces;
-using CookBook.PL.Util;
 
 namespace CookBook.PL.Controllers
 {
@@ -15,8 +14,7 @@ namespace CookBook.PL.Controllers
         public IUserService UserService { get; set; }
 
         [HttpGet]
-        //[ClaimsAuthorize]
-        //[AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         [HandleError(View = "_Error")]
         public virtual ActionResult UserControl()
         {
@@ -34,7 +32,7 @@ namespace CookBook.PL.Controllers
         }
 
         [HttpPost]
-        //[ClaimsAuthorize]
+        [Authorize(Roles = "Admin")]
         [HandleError(View = "_Error")]
         public virtual ActionResult DeleteUser(Guid id)
         {

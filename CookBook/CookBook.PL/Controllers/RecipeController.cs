@@ -2,11 +2,13 @@
 using Ninject;
 using System.Linq;
 using System.Web.Mvc;
+using CookBook.BLL.Enums;
 using CookBook.PL.Models;
 using CookBook.BLL.Models;
 using CookBook.PL.Mappers;
 using CookBook.BLL.Logging;
 using CookBook.BLL.Interfaces;
+using System.Security.Claims;
 
 namespace CookBook.PL.Controllers
 {
@@ -27,6 +29,16 @@ namespace CookBook.PL.Controllers
         {
             try
             {
+                UserViewModel user = Initialize();
+                if (user != null)
+                {
+                    if (user.Type == AccountTypes.User)
+                    {
+                        var userRecipeList = RecipeService.GetList().Where(x => x.UserId == user.Id).Select(RecipeViewMapper.ConvertRecipeModelToRecipeViewModel).ToList();
+                        userRecipeList.Select(x => x.User = UserViewMapper.ConvertUserModelToUserViewModel(UserService.GetList().FirstOrDefault(y => y.Id == x.UserId))).ToList();
+                        return View(Views.Listing, userRecipeList);
+                    }
+                }
                 var recipeList = RecipeService.GetList().Select(RecipeViewMapper.ConvertRecipeModelToRecipeViewModel).ToList();
                 recipeList.Select(x => x.User = UserViewMapper.ConvertUserModelToUserViewModel(UserService.GetList().FirstOrDefault(y => y.Id == x.UserId))).ToList();
                 return View(Views.Listing, recipeList);
@@ -40,6 +52,7 @@ namespace CookBook.PL.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User")]
         [HandleError(View = "_Error")]
         public virtual ActionResult AddRecipe()
         {
@@ -56,6 +69,7 @@ namespace CookBook.PL.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         [HandleError(View = "_Error")]
         public virtual ActionResult AddRecipe(RecipeViewModel recipe)
         {
@@ -63,7 +77,7 @@ namespace CookBook.PL.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    recipe.User = UserViewMapper.ConvertUserModelToUserViewModel(UserService.GetList().FirstOrDefault());
+                    recipe.User = Initialize();
                     RecipeService.AddItem(RecipeViewMapper.ConvertRecipeViewModelToRecipeModel(recipe));
                     return RedirectToAction(MVC.Recipe.ViewRecipeList());
                 }
@@ -77,7 +91,8 @@ namespace CookBook.PL.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
+        [Authorize]
         [HandleError(View = "_Error")]
         public virtual ActionResult DeleteRecipe(Guid id)
         {
@@ -95,6 +110,7 @@ namespace CookBook.PL.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [HandleError(View = "_Error")]
         public virtual ActionResult EditRecipe(Guid id)
         {
@@ -113,6 +129,7 @@ namespace CookBook.PL.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         [HandleError(View = "_Error")]
         public virtual ActionResult AddExistComposition(CompositionBaseViewModel model)
         {
@@ -134,6 +151,7 @@ namespace CookBook.PL.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         [HandleError(View = "_Error")]
         public virtual ActionResult AddNewComposition(CompositionViewModel model)
         {
@@ -153,6 +171,23 @@ namespace CookBook.PL.Controllers
                 Logger.Log.Error("Error: " + e);
                 return RedirectToAction(MVC.Home.ErrorAc());
             }
+        }
+
+        private UserViewModel Initialize()
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            if (!String.IsNullOrEmpty(claimsIdentity.Name))
+            {
+                var user = new UserViewModel
+                {
+                    Id = new Guid(claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value),
+                    Login = claimsIdentity.FindFirst(ClaimTypes.Name).Value,
+                    Type = (AccountTypes)Enum.Parse(typeof(AccountTypes), claimsIdentity.FindFirst(ClaimTypes.Role).Value)
+                };
+                return user;
+            }
+
+            return null;
         }
     }
 }

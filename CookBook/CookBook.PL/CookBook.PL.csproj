@@ -266,7 +266,6 @@
     <Compile Include="UserControlController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Util\ClaimsAuthorizeAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
