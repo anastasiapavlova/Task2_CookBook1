@@ -15,7 +15,7 @@ namespace CookBook.PL.Controllers
         public IUserService UserService { get; set; }
 
         [HttpGet]
-        [ClaimsAuthorize]
+        //[ClaimsAuthorize]
         //[AllowAnonymous]
         [HandleError(View = "_Error")]
         public virtual ActionResult UserControl()

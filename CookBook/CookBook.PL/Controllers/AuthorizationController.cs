@@ -10,8 +10,6 @@ using System.Web.Security;
 using System.Security.Claims;
 using CookBook.BLL.Interfaces;
 using CookBook.BLL.Logging;
-using log4net;
-using log4net.Core;
 using Microsoft.Owin.Security;
 
 namespace CookBook.PL.Controllers
