@@ -1,53 +1,101 @@
-﻿@model IEnumerable<CookBook.PL.Models.RecipeViewModel>
+﻿@using CookBook.PL.Helpers
+@model CookBook.PL.Models.IndexViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Listing";
-    var grid = new WebGrid(source: Model,
-        defaultSort: "Name",
-        rowsPerPage: 5);
-    grid.Pager(WebGridPagerModes.All);
 }
 
 <h2 class="section-heading mb-4">
     <span class="section-heading-lower">@CookBook.PL.Resources.NavBarNames.NavRecipeList</span>
 </h2>
-@grid.GetHtml(
-    tableStyle: "table table-bordered",
-    headerStyle: "webgrid-header",
-    footerStyle: "webgrid-footer",
-    alternatingRowStyle: "webgrid-alternating-row",
-    rowStyle: "webgrid-row-style",
-    columns: grid.Columns(
-        grid.Column(format: @<text><div>@(item.WebGrid.Rows.IndexOf(item) + 1)</div></text>),
-                grid.Column(columnName: "Name", header: "Name", canSort: false),
-                grid.Column(columnName: "User.Login", header: "Author", canSort: false),
-                grid.Column(columnName: "Category", header: "Category", canSort: false),
 
-                grid.Column(header: @CookBook.PL.Resources.ButtonNames.BtnEdit, format: (item) =>
-                {
-                    if (User.IsInRole("User") || User.IsInRole("Admin"))
-                    {
-                        return Html.ActionLink(@CookBook.PL.Resources.ButtonNames.BtnEdit, MVC.Recipe.EditRecipe()
-                            .AddRouteValues(new {id = item.id}));
-                    }
-                    else
-                    {
-                        return "Prohibited";
-                    }
-                }),
-                grid.Column(header: @CookBook.PL.Resources.ButtonNames.BtnDelete, format: (item) =>
-                {
-                    if (User.IsInRole("User") || User.IsInRole("Admin"))
-                    {
-                        return Html.ActionLink(@CookBook.PL.Resources.ButtonNames.BtnDelete, MVC.Recipe.DeleteRecipe()
-                            .AddRouteValues(new {id = item.id}));
-                    }
-                    else
-                    {
-                        return "Prohibited";
-                    }
-                })
-                ))
+<style>
+    .divTable {
+        display: table;
+        width: 100%;
+    }
 
+    .divTableRow {
+        display: table-row;
+    }
 
+    .divTableHeading {
+        display: table-header-group;
+    }
+
+    .divTableCell, .divTableHead {
+        border: 1px solid #EEE;
+        display: table-cell;
+        padding: 3px 10px;
+    }
+
+    .divTableHeading {
+        display: table-header-group;
+        text-align: left;
+        color: #e6a756;
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: 1.2em;
+    }
+
+    .divTableBody {
+        display: table-row-group;
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: 1.2em;
+    }
+</style>
+<div class="divTable">
+    <div class="divTableHeading">
+        <div class="divTableCell">
+            <p>Index</p>
+        </div>
+        <div class="divTableCell">
+            <span onclick='sortTable("emp_name");'>Name</span>
+        </div>
+        <div class="divTableCell">
+            <p>Author</p>
+        </div>
+        <div class="divTableCell">
+            <p>Category</p>
+        </div>
+        @if (User.IsInRole("User") || User.IsInRole("Admin"))
+        {
+            <div class="divTableCell">
+            </div>
+        }
+
+    </div>
+
+    @{ int index = 1; }
+    @foreach (var model in Model.Recipes)
+    {
+
+        <div class="divTableRow">
+            <div class="divTableCell">
+                <p>@(index++)</p>
+            </div>
+            <div class="divTableCell">
+                <p>@Html.DisplayFor(modelItem => model.Name)</p>
+            </div>
+            <div class="divTableCell">
+                <p>@Html.DisplayFor(modelItem => model.User.Login)</p>
+            </div>
+            <div class="divTableCell">
+                <p>@Html.DisplayFor(modelItem => model.Category)</p>
+            </div>
+            @if (User.IsInRole("User") || User.IsInRole("Admin"))
+            {
+                <div class="divTableCell">
+                    @Html.ActionLink(@CookBook.PL.Resources.ButtonNames.BtnEdit, MVC.Recipe.EditRecipe()
+                                                           .AddRouteValues(new { id = model.Id })) |
+                    @Html.ActionLink(@CookBook.PL.Resources.ButtonNames.BtnDelete, MVC.Recipe.DeleteRecipe()
+                                                           .AddRouteValues(new { id = model.Id }))
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("ViewRecipeList", new { page = x }))
+</div>

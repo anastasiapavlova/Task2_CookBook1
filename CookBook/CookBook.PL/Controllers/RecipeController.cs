@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Ninject;
 using System.Linq;
 using System.Web.Mvc;
@@ -25,10 +26,11 @@ namespace CookBook.PL.Controllers
 
         [HttpGet]
         [HandleError(View = "_Error")]
-        public virtual ActionResult ViewRecipeList()
+        public virtual ActionResult ViewRecipeList(int page = 1)
         {
             try
             {
+                var pageSize = int.Parse(Resources.Constants.ObjectPerPage);
                 UserViewModel user = Initialize();
                 if (user != null)
                 {
@@ -36,12 +38,18 @@ namespace CookBook.PL.Controllers
                     {
                         var userRecipeList = RecipeService.GetList().Where(x => x.UserId == user.Id).Select(RecipeViewMapper.ConvertRecipeModelToRecipeViewModel).ToList();
                         userRecipeList.Select(x => x.User = UserViewMapper.ConvertUserModelToUserViewModel(UserService.GetList().FirstOrDefault(y => y.Id == x.UserId))).ToList();
-                        return View(Views.Listing, userRecipeList);
+                        IEnumerable<RecipeViewModel> usersRecipesPerPages = userRecipeList.Skip((page - 1) * pageSize).Take(pageSize);
+                        PageInfo userPageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = userRecipeList.Count };
+                        IndexViewModel userIndexViewModel = new IndexViewModel { PageInfo = userPageInfo, Recipes = usersRecipesPerPages };
+                        return View(Views.Listing, userIndexViewModel);
                     }
                 }
                 var recipeList = RecipeService.GetList().Select(RecipeViewMapper.ConvertRecipeModelToRecipeViewModel).ToList();
                 recipeList.Select(x => x.User = UserViewMapper.ConvertUserModelToUserViewModel(UserService.GetList().FirstOrDefault(y => y.Id == x.UserId))).ToList();
-                return View(Views.Listing, recipeList);
+                IEnumerable<RecipeViewModel> recipesPerPages = recipeList.Skip((page - 1) * pageSize).Take(pageSize);
+                PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = recipeList.Count };
+                IndexViewModel indexViewModel = new IndexViewModel { PageInfo = pageInfo, Recipes = recipesPerPages };
+                return View(Views.Listing, indexViewModel);
             }
             catch (Exception e)
             {

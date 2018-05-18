@@ -119,6 +119,14 @@ namespace CookBook.PL.Controllers
         }
 
 
+        static readonly ActionParamsClass_ViewRecipeList s_params_ViewRecipeList = new ActionParamsClass_ViewRecipeList();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ViewRecipeList ViewRecipeListParams { get { return s_params_ViewRecipeList; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ViewRecipeList
+        {
+            public readonly string page = "page";
+        }
         static readonly ActionParamsClass_AddRecipe s_params_AddRecipe = new ActionParamsClass_AddRecipe();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_AddRecipe AddRecipeParams { get { return s_params_AddRecipe; } }
@@ -187,13 +195,14 @@ namespace CookBook.PL.Controllers
         public T4MVC_RecipeController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void ViewRecipeListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void ViewRecipeListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int page);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult ViewRecipeList()
+        public override System.Web.Mvc.ActionResult ViewRecipeList(int page)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ViewRecipeList);
-            ViewRecipeListOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "page", page);
+            ViewRecipeListOverride(callInfo, page);
             return callInfo;
         }
 

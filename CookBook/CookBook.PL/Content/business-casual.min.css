@@ -348,3 +348,31 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-errors {
     color: #b94a48;
 }
+
+.divTable{
+    display: table;
+    width: 100%;
+}
+.divTableRow {
+    display: table-row;
+}
+.divTableHeading {
+    display: table-header-group;
+}
+.divTableCell, .divTableHead {
+    border: 1px solid #EEE;
+    display: table-cell;
+    padding: 3px 10px;
+}
+.divTableHeading {
+    display: table-header-group;
+    text-align: left;
+    color: #e6a756;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+}
+.divTableBody {
+    display: table-row-group;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+}

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
 using CookBook.BLL.Logging;
-using T4MVCExtensions;
 
 namespace CookBook.PL.Controllers
 {
